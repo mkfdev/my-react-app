@@ -1,8 +1,10 @@
-@import './styles/utils';
-
 .App {
   &-header {
     background-color: $yellow;
     color: $green;
   }
+}
+
+.sass-title {
+  color: $red;
 }
