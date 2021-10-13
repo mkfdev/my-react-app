@@ -1,0 +1,10 @@
+$red: #fa5252;
+$blue: #339af0;
+$green: #40c057;
+$yellow: #fcc419;
+
+@mixin squre($size){
+  $caculated: 32px * $size;
+  width: $caculated;
+  height: $caculated;
+}
