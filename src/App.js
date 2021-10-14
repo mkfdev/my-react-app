@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+import { Route } from 'react-router';
 import './App.css';
-import SassCompoent from './components/SassCompoent';
+import Home from './components/Home/Home';
+import Join from './components/Join/Join';
+import Login from './components/Login/Login';
+import PetInfo from './components/PetInfo/PetInfo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <SassCompoent />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Route path="/" component={Home} exact={true} />
+      <Route path="/login" component={Login} />
+      <Route path="/join" component={Join} />
+      <Route path="/petInfo" component={PetInfo} />
     </div>
   );
 }
