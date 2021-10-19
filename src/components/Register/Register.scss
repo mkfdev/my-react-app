@@ -1,0 +1,10 @@
+@import 'form.scss';
+
+.btn-move {
+  text-decoration: none;
+  color: $green;
+  &:hover {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
