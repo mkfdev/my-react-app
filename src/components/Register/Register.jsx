@@ -26,10 +26,6 @@ const Register = () => {
     font-size: 1.5rem;
   `;
 
-  const onSubmit = async () => {
-    let createUser = await.firebase
-  };
-
   return (
     <div className="auth">
       <MainTitle>[Logo] Pet App Name</MainTitle>
