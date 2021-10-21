@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { authService } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import { updateProfile } from "@firebase/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ import "./Register.scss";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const {
     register,
@@ -41,10 +43,22 @@ const Register = () => {
 
       await updateProfile(createdUser.user, { displayName: data.name });
 
+      const database = getDatabase();
+      // set(child(ref(database, "users"), createdUser.user.uid), {
+      //   name: createdUser.user.displayName,
+      // });
+
+      set(ref(database, `users/${createdUser.user.uid}`), {
+        name: createdUser.user.displayName,
+      });
+
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
+      setErrorMessage(error.message);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -116,10 +130,14 @@ const Register = () => {
               value="가입하기"
               disabled={loading}
             />
+            {errorMessage && <p>{errorMessage}</p>}
 
-            <Link className="btn-move" to="login">
-              Go back Login...
-            </Link>
+            <div>
+              Already have an account?{" "}
+              <Link className="btn-move" to="login">
+                Login
+              </Link>
+            </div>
           </form>
         </section>
         <section className="auth-image">

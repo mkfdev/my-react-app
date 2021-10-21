@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { authService } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -27,7 +28,10 @@ const Login = () => {
       await signInWithEmailAndPassword(authService, data.email, data.password);
       console.log("login!!");
     } catch (error) {
-      console.log(error);
+      setErrorMessage(error.message);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -71,6 +75,7 @@ const Login = () => {
             )}
 
             <input className="btn-submit" type="submit" value="로그인" />
+            {errorMessage && <p>{errorMessage}</p>}
           </form>
         </section>
         <section className="auth-image">
