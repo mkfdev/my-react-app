@@ -38,9 +38,6 @@ const Register = ({ authService }) => {
         data.email,
         data.password,
       );
-      console.log(
-        `createdUser in create : ${createdUser} ${authService.currentUser}`,
-      );
 
       await updateProfile(createdUser.user, { displayName: data.name });
 

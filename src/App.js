@@ -31,7 +31,7 @@ function App({ authService }) {
         //redux store에 user 정보를 담는다
         dispatch(setUser(user));
       } else {
-        history.push("/login");
+        history.push("/");
         //redux sotre에 있는 user 정보 제거
         dispatch(clearUser());
       }
