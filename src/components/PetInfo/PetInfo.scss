@@ -1,0 +1,91 @@
+// @import "layout.scss";
+
+.pet {
+  width: 75rem;
+  padding: 2em;
+  @include box-shadow(0, 2px, 22px, 2px, rgba(0, 0, 0, 0.75));
+  &-header {
+    display: flex;
+    align-items: center;
+  }
+  &-menu {
+    margin-left: auto;
+    font-size: 1.25rem;
+    .link {
+      margin-right: 14px;
+      text-decoration: none;
+      color: $black;
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    padding: 4px 5px;
+    background-color: $blue;
+    color: $white;
+    font-size: 0.8rem;
+    border-radius: 4px;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+  }
+  &-asideMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 20%;
+    min-height: 500px;
+    border: 2px solid $black;
+    @include box-shadow(6px, 6px, 30px, 0, rgba(99, 106, 133, 0.75));
+    background-color: $lightViolet;
+    .text {
+      font-size: 14px;
+      span {
+        display: block;
+        font-size: 12px;
+        color: $red;
+      }
+    }
+    .btn-addPet {
+      margin-top: 15px;
+    }
+  }
+  &-contents {
+    width: 80%;
+    padding-left: 40px;
+    .title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $blue;
+      font-size: 1rem;
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .text {
+      margin-top: 1em;
+      font-size: 1.2rem;
+    }
+  }
+}
