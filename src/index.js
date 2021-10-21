@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { authService } from "./firebase";
 import { createStore, applyMiddleware } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxTunk from "redux-thunk";
@@ -28,7 +29,7 @@ ReactDOM.render(
             window.__REDUX_DEVTOOLS_EXTENSION__(),
         )}
       >
-        <App />
+        <App authService={authService} />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

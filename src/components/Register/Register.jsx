@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
-import { authService } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { updateProfile } from "@firebase/auth";
@@ -8,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./Register.scss";
 
-const Register = () => {
+const Register = ({ authService }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -39,7 +38,9 @@ const Register = () => {
         data.email,
         data.password,
       );
-      console.log(createdUser);
+      console.log(
+        `createdUser in create : ${createdUser} ${authService.currentUser}`,
+      );
 
       await updateProfile(createdUser.user, { displayName: data.name });
 

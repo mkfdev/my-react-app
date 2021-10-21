@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router";
-import { authService } from "./firebase";
+// import { authService } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import "./App.scss";
 import Home from "./components/Home/Home";
@@ -13,7 +13,7 @@ import Register from "./components/Register/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, clearUser } from "./redux/action/user_action";
 
-function App() {
+function App({ authService }) {
   //router 하위 컴포넌트에서 사용가능
   let history = useHistory();
   let dispatch = useDispatch();
@@ -45,8 +45,12 @@ function App() {
       <div className="app-wrapper">
         <Switch>
           <Route path="/" component={Home} exact={true} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path="/login">
+            <Login authService={authService} />
+          </Route>
+          <Route path="/register">
+            <Register authService={authService} />
+          </Route>
           <Route path="/petInfo" component={PetInfo} />
         </Switch>
       </div>

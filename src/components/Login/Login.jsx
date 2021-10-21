@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { authService } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./Login.scss";
 
-const Login = () => {
+const Login = ({ authService }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
