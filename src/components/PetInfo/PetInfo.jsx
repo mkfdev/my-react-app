@@ -7,15 +7,20 @@ import "./PetInfo.scss";
 import { MdLogout, MdAddCircle } from "react-icons/md";
 import { FcIdea } from "react-icons/fc";
 import { IoArrowForwardCircle } from "react-icons/io5";
+import AddPetForm from "../AddPetForm/AddPetForm";
 
 const PetInfo = () => {
   // const [userName, setUserName] = useState(null);
+  const [isOpened, setIsOpened] = useState(false);
   const [myPet, setMyPet] = useState([]);
 
   const handleLogout = () => {
     signOut(authService);
   };
 
+  const showAddForm = () => {
+    setIsOpened(true);
+  };
   //firebase에서 현재 로그인한 사용자 name 가져오기
   // useEffect(() => {
   //   onAuthStateChanged(authService, user => {
@@ -46,38 +51,44 @@ const PetInfo = () => {
         </button>
       </header>
 
-      <section className="pet-wrapper">
+      <div className="pet-wrapper">
         <aside className="pet-asideMenu">
           <p className="text">
             마이펫을 등록해보세요!<span>(최대 5마리 등록 가능)</span>
           </p>
-          <button className="btn-addPet">
+          <button className="btn-addPet" onClick={showAddForm}>
             <MdAddCircle size="64" />
           </button>
         </aside>
 
-        <section className="pet-contents">
-          <p className="title">
-            안녕하세요, <br />
-            다양한 반려견 사진들을 구경해보세요!
-            <Link to="search" className="link">
-              구경하러 가기 <IoArrowForwardCircle size="20" />
-            </Link>
-          </p>
-
-          {myPet.length ? (
-            <div>반려견정보 있음</div>
-          ) : (
-            <div className="pet-empty">
-              <FcIdea size="50" />
-              <p className="text">
-                아직 등록된 반려견 정보가 없습니다. <br />
-                나의 반려견 정보를 왼쪽 등록 메뉴에서 등록해주세요.
+        <div className="pet-info">
+          {!isOpened ? (
+            <section className="pet-contents">
+              <p className="title">
+                안녕하세요, <br />
+                다양한 반려견 사진들을 구경해보세요!
+                <Link to="search" className="link">
+                  구경하러 가기 <IoArrowForwardCircle size="20" />
+                </Link>
               </p>
-            </div>
+
+              {myPet.length ? (
+                <div>반려견정보 있음</div>
+              ) : (
+                <div className="pet-empty">
+                  <FcIdea size="50" />
+                  <p className="text">
+                    아직 등록된 반려견 정보가 없습니다. <br />
+                    나의 반려견 정보를 왼쪽 등록 메뉴에서 등록해주세요.
+                  </p>
+                </div>
+              )}
+            </section>
+          ) : (
+            <AddPetForm />
           )}
-        </section>
-      </section>
+        </div>
+      </div>
     </div>
   );
 };

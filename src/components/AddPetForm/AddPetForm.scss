@@ -1,0 +1,32 @@
+.petForm {
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 0 10px;
+      width: 50%;
+    }
+  }
+  label {
+    display: block;
+    margin-top: 1.4em;
+    font-size: 14px;
+  }
+  input {
+    width: 45%;
+    margin-top: 5px;
+    padding: 8px 6px;
+    border: 0;
+    border-bottom: 1px solid $black;
+  }
+  .inp-datepicker {
+    width: 181px;
+    input {
+      width: 100%;
+    }
+  }
+}
