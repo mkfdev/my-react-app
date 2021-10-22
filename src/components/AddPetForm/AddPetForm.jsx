@@ -77,6 +77,7 @@ const AddPetForm = () => {
                 id="birth"
                 selected={birthDate}
                 onChange={date => setBirthDate(date)}
+                dateFormat="yyyy-MM-dd"
               />
             </div>
           </li>
@@ -87,6 +88,7 @@ const AddPetForm = () => {
                 id="shot"
                 selected={shotDate}
                 onChange={date => setShotDate(date)}
+                dateFormat="yyyy-MM-dd"
               />
             </div>
           </li>

@@ -4,22 +4,36 @@ import { authService } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import "./PetInfo.scss";
-import { MdLogout, MdAddCircle } from "react-icons/md";
 import { FcIdea } from "react-icons/fc";
 import { IoArrowForwardCircle } from "react-icons/io5";
 import AddPetForm from "../AddPetForm/AddPetForm";
+import PetHeader from "../PetHeader/PetHeader";
+import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
+import PetList from "../PetList/PetList";
 
 const PetInfo = () => {
   // const [userName, setUserName] = useState(null);
-  const [isOpened, setIsOpened] = useState(false);
-  const [myPet, setMyPet] = useState([]);
+  const [petForm, setPetForm] = useState(false);
+  const [pets, setPets] = useState([
+    {
+      id: Date.now(),
+      name: "ari",
+      breed: "믹스견",
+      weight: "5",
+      gender: "female",
+      size: "s",
+      birth: "2017-01-05",
+      shot: "2021-10-01",
+      imgURL: "/assets/pet.jpg",
+    },
+  ]);
 
-  const handleLogout = () => {
+  const logout = () => {
     signOut(authService);
   };
 
-  const showAddForm = () => {
-    setIsOpened(true);
+  const handleAddForm = value => {
+    setPetForm(value);
   };
   //firebase에서 현재 로그인한 사용자 name 가져오기
   // useEffect(() => {
@@ -35,34 +49,13 @@ const PetInfo = () => {
 
   return (
     <div className="pet">
-      <header className="pet-header">
-        <h1>[Logo] Pet App Name</h1>
-        <nav className="pet-menu">
-          <Link to="/petInfo" className="link">
-            Home
-          </Link>
-          <Link to="/search" className="link">
-            Search
-          </Link>
-        </nav>
-        <button className="btn-logout" onClick={handleLogout}>
-          <MdLogout size="20" />
-          <span>Logout</span>
-        </button>
-      </header>
+      <PetHeader logout={logout} pets={pets} />
 
       <div className="pet-wrapper">
-        <aside className="pet-asideMenu">
-          <p className="text">
-            마이펫을 등록해보세요!<span>(최대 5마리 등록 가능)</span>
-          </p>
-          <button className="btn-addPet" onClick={showAddForm}>
-            <MdAddCircle size="64" />
-          </button>
-        </aside>
+        <PetAsideMenu handleAddForm={handleAddForm} pets={pets} />
 
         <div className="pet-info">
-          {!isOpened ? (
+          {!petForm ? (
             <section className="pet-contents">
               <p className="title">
                 안녕하세요, <br />
@@ -72,8 +65,12 @@ const PetInfo = () => {
                 </Link>
               </p>
 
-              {myPet.length ? (
-                <div>반려견정보 있음</div>
+              {pets.length ? (
+                <div className="pet-update">
+                  {pets.map(pet => (
+                    <PetList pet={pet} key={pet.id} />
+                  ))}
+                </div>
               ) : (
                 <div className="pet-empty">
                   <FcIdea size="50" />
