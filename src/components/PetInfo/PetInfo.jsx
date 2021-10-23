@@ -11,11 +11,21 @@ import PetHeader from "../PetHeader/PetHeader";
 import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
 // import PetList from "../PetList/PetList";
 import { FaRegBell, FaGratipay } from "react-icons/fa";
+import EditPetForm from "../EditPetForm/EditPetForm";
 
 const PetInfo = () => {
   // const [userName, setUserName] = useState(null);
-  const [petForm, setPetForm] = useState(false);
   const [pets, setPets] = useState({});
+  const [role, setRole] = useState("");
+  const [petForm, setPetForm] = useState(false);
+
+  const setFormRole = btnName => {
+    //Form이 true이고 role이 'add' 이면 AddPetForm 컴포넌트 오픈
+    //Form이 true이고 role이 'edit' 이면 EditPetForm 컴포넌트 오픈
+    const newRole = btnName.substr(4);
+    setRole(newRole);
+    setPetForm(true);
+  };
 
   const createPet = pet => {
     setPets(pets => {
@@ -44,15 +54,28 @@ const PetInfo = () => {
   //     setUserName(null);
   //   };
   // }, []);
+  const removePet = pet => {
+    setPets(pets => {
+      const updated = { ...pets };
+      delete updated[pet.id];
+      return updated;
+    });
+  };
 
   return (
     <div className="pet">
       <PetHeader logout={logout} pets={pets} />
 
       <div className="pet-wrapper">
-        <PetAsideMenu handleAddForm={handleAddForm} pets={pets} />
+        <PetAsideMenu
+          handleAddForm={handleAddForm}
+          removePet={removePet}
+          setFormRole={setFormRole}
+          pets={pets}
+        />
 
         <div className="pet-info">
+          {/* btn-add클릭시 petForm=true, 여기서는 !petForm일 때 add form이 보여진다 */}
           {!petForm ? (
             <section className="pet-contents">
               <p className="title">
@@ -107,13 +130,15 @@ const PetInfo = () => {
                   <FcIdea size="50" />
                   <p className="text">
                     아직 등록된 반려견 정보가 없습니다. <br />
-                    나의 반려견 정보를 왼쪽 등록 메뉴에서 등록해주세요.
+                    나의 반려견 정보를 왼쪽 메뉴에서 등록해주세요.
                   </p>
                 </div>
               )}
             </section>
-          ) : (
+          ) : role === "add" ? (
             <AddPetForm createPet={createPet} />
+          ) : (
+            <EditPetForm />
           )}
         </div>
       </div>

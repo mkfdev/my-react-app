@@ -1,16 +1,11 @@
 import React from "react";
 import { MdAddCircle } from "react-icons/md";
-import { BiEdit } from "react-icons/bi";
-import { RiDeleteBinFill } from "react-icons/ri";
 import "./PetAsideMenu.scss";
+import PetNavList from "../PetNavList/PetNavList";
 
-const PetAsideMenu = ({ handleAddForm, removePet, pets }) => {
-  // let history = useHistory();
-  // const showAddForm = () => {
-  //   history.push("/add");
-  // };
-  const openAddForm = () => {
-    handleAddForm(true);
+const PetAsideMenu = ({ setFormRole, removePet, pets }) => {
+  const handleForm = e => {
+    setFormRole(e.currentTarget.className);
   };
 
   return (
@@ -30,22 +25,16 @@ const PetAsideMenu = ({ handleAddForm, removePet, pets }) => {
       <div className="pet-nav-list">
         <ul>
           {Object.keys(pets).map(key => (
-            <li key={key}>
-              <div className="pet-panel">
-                <span className="pet-img"></span>
-                <span className="pet-name">{pets[key].name}</span>
-                <button className="btn-edit">
-                  <BiEdit size="18" />
-                </button>
-                <button className="btn-remove">
-                  <RiDeleteBinFill size="18" />
-                </button>
-              </div>
-            </li>
+            <PetNavList
+              key={key}
+              pet={pets[key]}
+              handleForm={handleForm}
+              removePet={removePet}
+            />
           ))}
           {Object.keys(pets).length < 5 && (
             <li>
-              <button className="btn-addPet" onClick={openAddForm}>
+              <button className="btn-add" onClick={handleForm}>
                 <MdAddCircle size="64" />
               </button>
             </li>
