@@ -19,19 +19,19 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider
-        store={createStoreWithMiddleware(
-          Reducer,
-          window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__(),
-        )}
-      >
-        <App authService={authService} />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider
+      store={createStoreWithMiddleware(
+        Reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__(),
+      )}
+    >
+      <App authService={authService} />
+    </Provider>
+  </BrowserRouter>,
+  // </React.StrictMode>,
   document.getElementById("root"),
 );
 

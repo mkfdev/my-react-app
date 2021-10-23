@@ -1,7 +1,7 @@
 .petForm {
   ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
@@ -28,5 +28,9 @@
     input {
       width: 100%;
     }
+  }
+  .btn-submit {
+    display: flex;
+    margin-left: auto;
   }
 }

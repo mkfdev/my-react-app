@@ -24,5 +24,53 @@
         color: $blue;
       }
     }
+    .pet-nav-list {
+      width: 100%;
+      margin-top: 1.2em;
+      ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      li {
+        width: 50%;
+        text-align: center;
+        margin: 1em 0;
+      }
+      .pet-panel {
+        position: relative;
+        width: 64px;
+        margin: 0 auto;
+      }
+      .pet-img {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background-color: $yellow;
+      }
+      .pet-name {
+        display: block;
+      }
+      .btn-edit,
+      .btn-remove {
+        position: absolute;
+        top: 0;
+        &:hover {
+          color: $green;
+        }
+      }
+      .btn-edit {
+        right: 8px;
+      }
+      .btn-remove {
+        right: -10px;
+      }
+    }
   }
 }

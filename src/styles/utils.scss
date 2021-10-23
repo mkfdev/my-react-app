@@ -5,6 +5,7 @@ $yellow: #fcc419;
 $white: #fff;
 $black: #000;
 $lightViolet: #e8eaf6;
+$beige: #f5f5dc;
 
 @mixin box-shadow($top, $left, $blur, $spread, $color) {
   -webkit-box-shadow: $top $left $blur $spread $color;
