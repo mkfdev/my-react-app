@@ -1,25 +1,33 @@
-import { database } from "./firebase";
-import { ref, update, remove, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  update,
+  remove,
+  onValue,
+  off,
+} from "firebase/database";
 
 class PetRepository {
+  constructor(app) {
+    this.database = getDatabase(app);
+  }
   savePet(userId, pet) {
-    update(ref(database, `users/${userId}/pet`), {
+    update(ref(this.database, `users/${userId}/pet`), {
       [pet.id]: pet,
     });
   }
 
   syncPets(userId, onPetUpdate) {
-    const petRef = ref(database, `users/${userId}/pet`);
+    const petRef = ref(this.database, `users/${userId}/pet`);
     onValue(petRef, snapshot => {
       const data = snapshot.val();
       data && onPetUpdate(data);
     });
-    // TODO:에러(off)
-    // return () => ref.off();
+    return () => off(petRef);
   }
 
   removePet(userId, pet) {
-    remove(ref(database, `users/${userId}/pet/${pet.id}`));
+    remove(ref(this.database, `users/${userId}/pet/${pet.id}`));
   }
 }
 

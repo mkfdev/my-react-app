@@ -14,7 +14,7 @@ import { FaRegBell, FaGratipay } from "react-icons/fa";
 import EditPetForm from "../EditPetForm/EditPetForm";
 import "./PetInfo.scss";
 
-const PetInfo = ({ authService, repository }) => {
+const PetInfo = ({ authService, petRepository }) => {
   // const [userName, setUserName] = useState(null);
   const history = useHistory();
   const historyState = history?.location?.state;
@@ -38,7 +38,7 @@ const PetInfo = ({ authService, repository }) => {
       return updated;
     });
 
-    repository.savePet(userId, pet);
+    petRepository.savePet(userId, pet);
     setPetForm(false);
   };
 
@@ -48,7 +48,7 @@ const PetInfo = ({ authService, repository }) => {
       delete updated[pet.id];
       return updated;
     });
-    repository.removePet(userId, pet);
+    petRepository.removePet(userId, pet);
     setPetForm(false);
   };
 
@@ -72,11 +72,11 @@ const PetInfo = ({ authService, repository }) => {
     if (!userId) {
       return;
     }
-    const updateSync = repository.syncPets(userId, pets => {
+    const updateSync = petRepository.syncPets(userId, pets => {
       setPets(pets);
     });
     //component unmout
-    // return () => updateSync();
+    return () => updateSync();
   }, [userId]);
 
   //firebase에서 현재 로그인한 사용자 name 가져오기
