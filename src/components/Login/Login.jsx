@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser, clearUser } from "../../redux/action/user_action";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./Login.scss";
 
 const Login = ({ authService }) => {
+  let history = useHistory();
+  let dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
@@ -13,6 +19,13 @@ const Login = ({ authService }) => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const goToMainPage = userId => {
+    history.push({
+      pathname: "/petInfo",
+      state: { id: userId },
+    });
+  };
 
   //data {key : value} => {name : input value}
   // const onSubmit = data => {
@@ -33,6 +46,25 @@ const Login = ({ authService }) => {
       }, 3000);
     }
   };
+  //인증된 유저는 펫 메인페이지로 보내주기
+  useEffect(() => {
+    //auth 상태 지켜보기
+    onAuthStateChanged(authService, user => {
+      console.log("user", user);
+      //user 로그인
+      if (user) {
+        // history.push("/petInfo");
+        goToMainPage(user.uid);
+        //setUser 함수를 dispatch로 날림
+        //redux store에 user 정보를 담는다
+        dispatch(setUser(user));
+      } else {
+        history.push("/login");
+        //redux sotre에 있는 user 정보 제거
+        dispatch(clearUser());
+      }
+    });
+  }, []);
 
   return (
     <div className="auth">

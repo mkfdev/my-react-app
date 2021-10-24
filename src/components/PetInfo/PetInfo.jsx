@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { authService } from "../../firebase";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
-import "./PetInfo.scss";
 import { FcIdea } from "react-icons/fc";
 import { IoArrowForwardCircle } from "react-icons/io5";
 import AddPetForm from "../AddPetForm/AddPetForm";
@@ -12,9 +12,13 @@ import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
 // import PetList from "../PetList/PetList";
 import { FaRegBell, FaGratipay } from "react-icons/fa";
 import EditPetForm from "../EditPetForm/EditPetForm";
+import "./PetInfo.scss";
 
-const PetInfo = () => {
+const PetInfo = ({ authService, repository }) => {
   // const [userName, setUserName] = useState(null);
+  const history = useHistory();
+  const historyState = history?.location?.state;
+  const [userId, setUserId] = useState(historyState && historyState.id);
   const [pets, setPets] = useState({});
   const [role, setRole] = useState("");
   const [petForm, setPetForm] = useState(false);
@@ -34,15 +38,47 @@ const PetInfo = () => {
       return updated;
     });
 
+    repository.savePet(userId, pet);
     setPetForm(false);
   };
+
+  const removePet = pet => {
+    setPets(pets => {
+      const updated = { ...pets };
+      delete updated[pet.id];
+      return updated;
+    });
+    repository.removePet(userId, pet);
+    setPetForm(false);
+  };
+
   const logout = () => {
     signOut(authService);
   };
 
-  const handleAddForm = value => {
-    setPetForm(value);
-  };
+  useEffect(() => {
+    //auth 상태 지켜보기
+    onAuthStateChanged(authService, user => {
+      console.log("user", user);
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        history.push("/login");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const updateSync = repository.syncPets(userId, pets => {
+      setPets(pets);
+    });
+    //component unmout
+    // return () => updateSync();
+  }, [userId]);
+
   //firebase에서 현재 로그인한 사용자 name 가져오기
   // useEffect(() => {
   //   onAuthStateChanged(authService, user => {
@@ -54,13 +90,6 @@ const PetInfo = () => {
   //     setUserName(null);
   //   };
   // }, []);
-  const removePet = pet => {
-    setPets(pets => {
-      const updated = { ...pets };
-      delete updated[pet.id];
-      return updated;
-    });
-  };
 
   return (
     <div className="pet">
@@ -68,7 +97,6 @@ const PetInfo = () => {
 
       <div className="pet-wrapper">
         <PetAsideMenu
-          handleAddForm={handleAddForm}
           removePet={removePet}
           setFormRole={setFormRole}
           pets={pets}
