@@ -1,8 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
-import { updateProfile } from "@firebase/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./Register.scss";
@@ -32,24 +29,11 @@ const Register = ({ authService }) => {
   const onSubmit = async data => {
     try {
       setLoading(true);
-      console.log(data);
-      let createdUser = await createUserWithEmailAndPassword(
-        authService,
+      await authService.createAndUpdateUser(
         data.email,
         data.password,
+        data.name,
       );
-
-      await updateProfile(createdUser.user, { displayName: data.name });
-
-      const database = getDatabase();
-      // set(child(ref(database, "users"), createdUser.user.uid), {
-      //   name: createdUser.user.displayName,
-      // });
-
-      set(ref(database, `users/${createdUser.user.uid}`), {
-        name: createdUser.user.displayName,
-      });
-
       setLoading(false);
     } catch (error) {
       setLoading(false);

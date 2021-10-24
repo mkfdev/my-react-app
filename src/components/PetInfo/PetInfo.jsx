@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { onAuthStateChanged } from "firebase/auth";
-import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { FcIdea } from "react-icons/fc";
 import { IoArrowForwardCircle } from "react-icons/io5";
@@ -53,12 +51,13 @@ const PetInfo = ({ authService, petRepository }) => {
   };
 
   const logout = () => {
-    signOut(authService);
+    authService.logout();
+    // signOut(authService);
   };
 
   useEffect(() => {
     //auth 상태 지켜보기
-    onAuthStateChanged(authService, user => {
+    authService.onAuthChange(user => {
       console.log("user", user);
       if (user) {
         setUserId(user.uid);

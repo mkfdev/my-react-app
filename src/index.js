@@ -10,7 +10,10 @@ import Reducer from "./redux/reducers";
 //firebase service
 import { firebaseApp } from "./service/firebase";
 import PetRepository from "./service/pet_repository";
-import { authService } from "./service/firebase";
+import AuthService from "./service/auth_service";
+
+const authService = new AuthService(firebaseApp);
+const petRepository = new PetRepository(firebaseApp);
 
 // 리덕스: 오브젝트만 받을 수 있음
 // 미들웨어: 함수,프로미스를 받을 수 있게 사용
@@ -19,9 +22,6 @@ const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReduxTunk,
 )(createStore);
-
-// const authService = new AuthService(firebaseApp);
-const petRepository = new PetRepository(firebaseApp);
 
 ReactDOM.render(
   // <React.StrictMode>

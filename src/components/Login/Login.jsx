@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser, clearUser } from "../../redux/action/user_action";
 import { useForm } from "react-hook-form";
@@ -37,7 +35,8 @@ const Login = ({ authService }) => {
 
   const onSubmit = async data => {
     try {
-      await signInWithEmailAndPassword(authService, data.email, data.password);
+      await authService.login(data.email, data.password);
+      // await signInWithEmailAndPassword(authService, data.email, data.password);
       console.log("login!!");
     } catch (error) {
       setErrorMessage(error.message);
@@ -46,10 +45,11 @@ const Login = ({ authService }) => {
       }, 3000);
     }
   };
+
   //인증된 유저는 펫 메인페이지로 보내주기
   useEffect(() => {
-    //auth 상태 지켜보기
-    onAuthStateChanged(authService, user => {
+    //user 로그인 상태 지켜보기
+    authService.onAuthChange(user => {
       console.log("user", user);
       //user 로그인
       if (user) {
@@ -68,7 +68,6 @@ const Login = ({ authService }) => {
 
   return (
     <div className="auth">
-      {/* <MainTitle>[Logo] Pet App Name</MainTitle> */}
       <h1>[Logo] Pet App Name</h1>
       <h2>Get Started</h2>
       <p>
