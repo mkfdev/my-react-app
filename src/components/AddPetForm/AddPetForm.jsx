@@ -16,7 +16,7 @@ import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const AddPetForm = ({ InputFile, createPet }) => {
+const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
   const [file, setFile] = useState({ fileName: null, fileURL: null });
   //react-hook-form 사용
   //control 외부 라이브러리 제어
@@ -39,10 +39,11 @@ const AddPetForm = ({ InputFile, createPet }) => {
       shotDate: data.shotDate,
       birthDate: data.birthDate,
       imgURL: file.fileURL || "",
+      imgName: file.fileName || "",
     };
 
     //부모컴포넌트로 pet정보 보내기
-    createPet(pet);
+    createAndUpdatePet(pet);
   };
 
   //DatePicker 출력 dateFormat

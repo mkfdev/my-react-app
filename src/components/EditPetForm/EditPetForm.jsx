@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker, Radio, Select } from "antd";
 import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const EditPetForm = InputFile => {
+const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
+  const { id, name, breed, weight, size, gender, imgName, imgURL } = pet;
+  const [file, setFile] = useState({ fileName: imgName, fileURL: imgURL });
+  const defaultValues = {
+    name: name,
+    breed: breed,
+  };
   const {
     handleSubmit,
     register,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues });
+
+  const onFileChange = file => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+    console.log("editComponent", file);
+  };
 
   const onSubmit = data => {
     console.log(data);
+    console.log(file.fileName, file.fileURL);
+    //data에 fileName, fileURL 추가해서 보내기
+    const updated = {
+      id: pet.id,
+      name: data.name,
+      breed: data.breed,
+      weight: data.weight,
+      gender: data.gender,
+      size: data.size,
+      shotDate: data.shotDate,
+      birthDate: data.birthDate,
+      imgURL: file.fileURL || "",
+      imgName: file.fileName || "",
+    };
+    createAndUpdatePet(updated);
   };
 
   //DatePicker 출력 dateFormat
@@ -28,9 +57,19 @@ const EditPetForm = InputFile => {
   //Select Option
   const { Option } = Select;
 
+  // useEffect(() => {
+  //   reset({
+  //     name: name,
+  //     breed: breed,
+  //     weight: weight,
+  //     size: size,
+  //     gender: gender,
+  //   });
+  // }, []);
+
   return (
     <section className="petForm">
-      <h2>Edit about your pup.</h2>
+      <h2>Edit about your pup {pet.name}.</h2>
       <div className="petForm-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
@@ -41,6 +80,7 @@ const EditPetForm = InputFile => {
                 id="name"
                 name="name"
                 className="inp-name"
+                placeholder="pet's name"
                 {...register("name", {
                   required: true,
                   maxLength: 10,
@@ -124,20 +164,31 @@ const EditPetForm = InputFile => {
                   // field안에는 value나 onBlur와 같은 함수도 있음
                   // render안의 onChange를 조작해, onChange안에 들어갈 값을
                   // 선택할 수 있다.
-                  render={({ field: { onChange } }) => (
-                    // antd의 datepicker에서 e.target.value는
-                    // moment 객체 그대로를 반환하기에,
-                    // "2021-04-15"와 같은 값을 얻고싶다면, 두번째 파라미터
-                    // "dateString"을 추가해서 값을 넣어야 한다.
+                  render={({ field }) => (
                     <DatePicker
                       locale={locale}
                       onChange={(value, dateString) => {
-                        onChange(dateString);
+                        field.onChange(dateString);
                       }}
                       format={dateFormat}
                       disabledDate={disabledDate}
+                      defaultValue={field.value}
                     />
                   )}
+                  // render={({ field: { onChange } }) => (
+                  //   // antd의 datepicker에서 e.target.value는
+                  //   // moment 객체 그대로를 반환하기에,
+                  //   // "2021-04-15"와 같은 값을 얻고싶다면, 두번째 파라미터
+                  //   // "dateString"을 추가해서 값을 넣어야 한다.
+                  //   <DatePicker
+                  //     locale={locale}
+                  //     onChange={(value, dateString) => {
+                  //       onChange(dateString);
+                  //     }}
+                  //     format={dateFormat}
+                  //     disabledDate={disabledDate}
+                  //   />
+                  // )}
                   rules={{ required: true }}
                 />
               </div>
@@ -161,6 +212,7 @@ const EditPetForm = InputFile => {
                     />
                   )}
                   rules={{ required: true }}
+                  defaultValue=""
                 />
               </div>
               {errors.shotDate && <p>마지막 접종 날짜를 선택해주세요.</p>}
@@ -181,12 +233,13 @@ const EditPetForm = InputFile => {
                   </Radio.Group>
                 )}
                 rules={{ required: true }}
+                defaultValue=""
               />
               {errors.gender && <p>성별을 선택해주세요.</p>}
             </li>
             <li>
               <div className="pet-imgUploader">
-                <InputFile />
+                <InputFile name={file.fileName} onFileChange={onFileChange} />
               </div>
             </li>
           </ul>
