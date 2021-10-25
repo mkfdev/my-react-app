@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddPetForm.scss";
 // import ReactDatePicker from "react-datepicker";
 // import { addDays } from "date-fns";
@@ -16,7 +16,8 @@ import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const AddPetForm = ({ createPet }) => {
+const AddPetForm = ({ InputFile, createPet }) => {
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
   //react-hook-form 사용
   //control 외부 라이브러리 제어
   const {
@@ -37,7 +38,7 @@ const AddPetForm = ({ createPet }) => {
       size: data.size,
       shotDate: data.shotDate,
       birthDate: data.birthDate,
-      imgURL: data.file,
+      imgURL: file.fileURL || "",
     };
 
     //부모컴포넌트로 pet정보 보내기
@@ -54,6 +55,12 @@ const AddPetForm = ({ createPet }) => {
   //Select Option
   const { Option } = Select;
 
+  const onFileChange = file => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
   return (
     <section className="petForm">
       <h2>Give us the basics about your pop.</h2>
@@ -212,19 +219,7 @@ const AddPetForm = ({ createPet }) => {
               {errors.gender && <p>성별을 선택해주세요.</p>}
             </li>
             <li>
-              <div className="pet-imgUploader">
-                <input
-                  className="inp-image"
-                  type="file"
-                  accept="image/*"
-                  name="file"
-                  {...register("file")}
-                />
-                {/* image upload 버튼 */}
-                {/* <button className="btn-image" onClick={onClick}>
-                  {name || "No File"}
-                </button> */}
-              </div>
+              <InputFile name={file.fileName} onFileChange={onFileChange} />
             </li>
           </ul>
 

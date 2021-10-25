@@ -8,7 +8,7 @@ import "./App.scss";
 
 //redux hook
 // import { useSelector } from "react-redux";
-function App({ authService, petRepository }) {
+function App({ InputFile, authService, petRepository }) {
   //router 하위 컴포넌트에서 사용가능
   //loading기능은 넣고싶은데..일단 pass
   // const isLoading = useSelector(state => state.user.isLoading);
@@ -27,7 +27,11 @@ function App({ authService, petRepository }) {
           <Register authService={authService} />
         </Route>
         <Route path="/petInfo">
-          <PetInfo authService={authService} petRepository={petRepository} />
+          <PetInfo
+            InputFile={InputFile}
+            authService={authService}
+            petRepository={petRepository}
+          />
         </Route>
       </Switch>
     </div>

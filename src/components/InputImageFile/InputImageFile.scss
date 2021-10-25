@@ -1,0 +1,21 @@
+.image-uploader {
+  margin-top: 20px;
+}
+.input-title {
+  display: block;
+}
+.input-image {
+  display: none;
+}
+
+.btn-image {
+  margin-top: 5px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: $black;
+  color: $white;
+  transition: all 0.2s ease-in;
+  &:hover {
+    background-color: $blue;
+  }
+}

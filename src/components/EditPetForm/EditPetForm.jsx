@@ -5,7 +5,7 @@ import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const EditPetForm = () => {
+const EditPetForm = InputFile => {
   const {
     handleSubmit,
     register,
@@ -186,17 +186,7 @@ const EditPetForm = () => {
             </li>
             <li>
               <div className="pet-imgUploader">
-                <input
-                  className="inp-image"
-                  type="file"
-                  accept="image/*"
-                  name="file"
-                  {...register("file")}
-                />
-                {/* image upload 버튼 */}
-                {/* <button className="btn-image" onClick={onClick}>
-                  {name || "No File"}
-                </button> */}
+                <InputFile />
               </div>
             </li>
           </ul>
