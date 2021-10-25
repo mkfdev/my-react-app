@@ -2,29 +2,33 @@ import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker, Radio, Select } from "antd";
 import locale from "antd/es/calendar/locale/ko_KR";
-import moment from "moment";
+import moment from "moment"; //날짜,시간,데이터 조작에 유용한 lib
 import "antd/dist/antd.css";
 
 const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
-  const { id, name, breed, weight, size, gender, imgName, imgURL } = pet;
+  const { imgName, imgURL } = pet;
   const [file, setFile] = useState({ fileName: imgName, fileURL: imgURL });
-  const defaultValues = {
-    name: name,
-    breed: breed,
-  };
+
   const {
     handleSubmit,
     register,
     control,
     formState: { errors },
-  } = useForm({ defaultValues });
+    reset,
+  } = useForm();
+
+  //reset폼안의 필드값을 원하는 값으로 초기화
+  //선택한 pet데이터로 초기화시킴
+  //제어 컴포넌트(ANTD)는 controller에서 초기화 설정
+  useEffect(() => {
+    reset(pet);
+  }, [reset, pet]);
 
   const onFileChange = file => {
     setFile({
       fileName: file.name,
       fileURL: file.url,
     });
-    console.log("editComponent", file);
   };
 
   const onSubmit = data => {
@@ -50,22 +54,14 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
   const dateFormat = "YYYY-MM-DD";
 
   //DatePicker disabledDate 설정
+  //moment().startOf("day") 오늘 오전 12시
+  //current 값은 오늘 오전12시 이후의 날짜
   function disabledDate(current) {
     return current && current > moment().startOf("day");
   }
 
-  //Select Option
+  //select Option
   const { Option } = Select;
-
-  // useEffect(() => {
-  //   reset({
-  //     name: name,
-  //     breed: breed,
-  //     weight: weight,
-  //     size: size,
-  //     gender: gender,
-  //   });
-  // }, []);
 
   return (
     <section className="petForm">
@@ -155,15 +151,13 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
             <li>
               <div className="inp-datepicker">
                 <label htmlFor="birth">Birthday</label>
-
                 <Controller
                   control={control}
                   name="birthDate"
                   format={dateFormat}
                   // render를 사용해서, field값을 복사하거나 꺼내 쓰면 된다.
                   // field안에는 value나 onBlur와 같은 함수도 있음
-                  // render안의 onChange를 조작해, onChange안에 들어갈 값을
-                  // 선택할 수 있다.
+                  // render안의 onChange를 조작해, onChange안에 들어갈 값을 선택할 수 있다.
                   render={({ field }) => (
                     <DatePicker
                       locale={locale}
@@ -172,23 +166,10 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
                       }}
                       format={dateFormat}
                       disabledDate={disabledDate}
-                      defaultValue={field.value}
+                      value={moment(field.value)}
+                      allowClear={false}
                     />
                   )}
-                  // render={({ field: { onChange } }) => (
-                  //   // antd의 datepicker에서 e.target.value는
-                  //   // moment 객체 그대로를 반환하기에,
-                  //   // "2021-04-15"와 같은 값을 얻고싶다면, 두번째 파라미터
-                  //   // "dateString"을 추가해서 값을 넣어야 한다.
-                  //   <DatePicker
-                  //     locale={locale}
-                  //     onChange={(value, dateString) => {
-                  //       onChange(dateString);
-                  //     }}
-                  //     format={dateFormat}
-                  //     disabledDate={disabledDate}
-                  //   />
-                  // )}
                   rules={{ required: true }}
                 />
               </div>
@@ -201,18 +182,19 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
                   control={control}
                   name="shotDate"
                   format={dateFormat}
-                  render={({ field: { onChange } }) => (
+                  render={({ field }) => (
                     <DatePicker
                       locale={locale}
                       onChange={(value, dateString) => {
-                        onChange(dateString);
+                        field.onChange(dateString);
                       }}
                       format={dateFormat}
                       disabledDate={disabledDate}
+                      value={moment(field.value)}
+                      allowClear={false}
                     />
                   )}
                   rules={{ required: true }}
-                  defaultValue=""
                 />
               </div>
               {errors.shotDate && <p>마지막 접종 날짜를 선택해주세요.</p>}
@@ -233,7 +215,6 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
                   </Radio.Group>
                 )}
                 rules={{ required: true }}
-                defaultValue=""
               />
               {errors.gender && <p>성별을 선택해주세요.</p>}
             </li>
