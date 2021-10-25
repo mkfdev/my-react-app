@@ -109,7 +109,7 @@ const Login = ({ authService }) => {
           </form>
         </section>
         <section className="auth-image">
-          <img src={process.env.PUBLIC_URL + "/assets/pet.jpg"} alt="" />
+          <img src="/assets/pet.jpg" alt="" />
         </section>
       </div>
     </div>

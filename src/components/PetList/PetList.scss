@@ -1,0 +1,59 @@
+.pet {
+  &-card-list {
+    overflow-y: auto;
+    height: 400px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+    li {
+      margin-bottom: 30px;
+    }
+    .card-box {
+      display: flex;
+      width: 90%;
+      @include box-shadow(28px, 32px, 17px, -5px, rgba(95, 94, 94, 0.62));
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: $white;
+    }
+    .thumbnail-wrap {
+      position: relative;
+      // padding-top: 100%;
+      width: 30%;
+      overflow: hidden;
+      .center {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: translate(50%, 50%);
+      }
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        height: auto;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .details-wrap {
+      width: 70%;
+      padding: 10px 20px;
+      text-align: center;
+      .info-box {
+        display: inline-block;
+        margin-bottom: 5px;
+        padding: 8px 16px;
+        border-radius: 10px;
+        background-color: $beige;
+      }
+      p {
+        margin: 3px 0 0;
+      }
+    }
+  }
+}

@@ -123,8 +123,7 @@ const Register = ({ authService }) => {
           </form>
         </section>
         <section className="auth-image">
-          {/* 절대 경로로 pulic 접근하기: process.env.PUBLIC_URL 사용 */}
-          <img src={process.env.PUBLIC_URL + "/assets/pet.jpg"} alt="" />
+          <img src="/assets/pet.jpg" alt="" />
         </section>
       </div>
     </div>
