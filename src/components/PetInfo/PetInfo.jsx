@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { FcIdea } from "react-icons/fc";
 import { IoArrowForwardCircle } from "react-icons/io5";
 import AddPetForm from "../AddPetForm/AddPetForm";
+import EditPetForm from "../EditPetForm/EditPetForm";
 import PetHeader from "../PetHeader/PetHeader";
 import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
-// import PetList from "../PetList/PetList";
-import EditPetForm from "../EditPetForm/EditPetForm";
-import "./PetInfo.scss";
 import PetList from "../PetList/PetList";
+import "./PetInfo.scss";
+import { valueToNode } from "@babel/types";
 
 const PetInfo = ({ InputFile, authService, petRepository }) => {
   // const [userName, setUserName] = useState(null);
@@ -18,19 +18,21 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [pets, setPets] = useState({});
-  const [role, setRole] = useState("");
+  const [openForm, setOpenForm] = useState({});
   const [petForm, setPetForm] = useState(false);
+  const [role, setRole] = useState("");
+  const [selectedPet, setSelectedPet] = useState("");
 
-  const setFormRole = btnName => {
+  const changeFormRole = (role, selected) => {
     //Form이 true이고 role이 'add' 이면 AddPetForm 컴포넌트 오픈
     //Form이 true이고 role이 'edit' 이면 EditPetForm 컴포넌트 오픈
-    const newRole = btnName.substr(4);
-    setRole(newRole);
+    setRole(role);
+    setSelectedPet(selected);
     setPetForm(true);
   };
 
-  const createPet = pet => {
-    console.log("createPet", pet);
+  const createAndUpdatePet = pet => {
+    console.log("createAndUpdatePet", pet);
     setPets(pets => {
       const updated = { ...pets };
       updated[pet.id] = pet;
@@ -53,7 +55,6 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
 
   const logout = () => {
     authService.logout();
-    // signOut(authService);
   };
 
   useEffect(() => {
@@ -98,12 +99,12 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
       <div className="pet-wrapper">
         <PetAsideMenu
           removePet={removePet}
-          setFormRole={setFormRole}
+          changeFormRole={changeFormRole}
           pets={pets}
         />
 
         <div className="pet-info">
-          {/* btn-add클릭시 petForm=true, 여기서는 !petForm일 때 add form이 보여진다 */}
+          {/* Empty View or Form(add or Edit) */}
           {!petForm ? (
             <section className="pet-contents">
               <p className="title">
@@ -135,9 +136,16 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
               )}
             </section>
           ) : role === "add" ? (
-            <AddPetForm InputFile={InputFile} createPet={createPet} />
+            <AddPetForm
+              InputFile={InputFile}
+              createAndUpdatePet={createAndUpdatePet}
+            />
           ) : (
-            <EditPetForm InputFile={InputFile} />
+            <EditPetForm
+              InputFile={InputFile}
+              pet={selectedPet}
+              createAndUpdatePet={createAndUpdatePet}
+            />
           )}
         </div>
       </div>
