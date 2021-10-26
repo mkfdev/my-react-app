@@ -33,7 +33,6 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
   };
 
   const createAndUpdatePet = pet => {
-    console.log("createAndUpdatePet", pet);
     setPets(pets => {
       const updated = { ...pets };
       updated[pet.id] = pet;
