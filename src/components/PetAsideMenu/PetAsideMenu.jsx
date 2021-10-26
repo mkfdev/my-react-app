@@ -14,7 +14,7 @@ const PetAsideMenu = ({ changeFormRole, removePet, pets }) => {
   return (
     <aside className="pet-asideMenu">
       <p className="text">
-        마이펫을 등록해보세요!<span>(최대 5마리 등록 가능)</span>
+        마이펫을 등록해보세요!<span>(최대 6마리 등록 가능)</span>
       </p>
 
       {/* 펫 정보가 추가되면 MENU에도 펫 패널 추가 */}
@@ -29,7 +29,7 @@ const PetAsideMenu = ({ changeFormRole, removePet, pets }) => {
             />
           ))}
           {/* 생성된 펫 정보가 5개이상이면 BUTTON 숨김 */}
-          {Object.keys(pets).length < 5 && (
+          {Object.keys(pets).length < 6 && (
             <li>
               <button className="btn-add" onClick={handleForm}>
                 <MdAddCircle size="64" />

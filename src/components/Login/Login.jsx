@@ -68,7 +68,15 @@ const Login = ({ authService }) => {
 
   return (
     <div className="auth">
-      <h1>[Logo] Pet App Name</h1>
+      <h1>
+        <img className="logo" src="assets/logo.jpg" alt="" />
+        <span className="text-round">우</span>
+        <span className="text-round">리</span>
+        <span className="text-round">같</span>
+        <span className="text-round">이</span>
+        <span className="text-round">있</span>
+        <span className="text-round">개</span>
+      </h1>
       <h2>Get Started</h2>
       <p>
         Don't have an account?{" "}

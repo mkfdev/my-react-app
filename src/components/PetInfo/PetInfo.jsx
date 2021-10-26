@@ -18,7 +18,6 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [pets, setPets] = useState({});
-  const [openForm, setOpenForm] = useState({});
   const [petForm, setPetForm] = useState(false);
   const [role, setRole] = useState("");
   const [selectedPet, setSelectedPet] = useState("");
@@ -31,8 +30,13 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
     setPetForm(true);
   };
 
+  const goOutWriteForm = () => {
+    setPetForm(false);
+  };
+
   const createAndUpdatePet = pet => {
     console.log("createAndUpdatePet", pet);
+    // setLoading(true);
     setPets(pets => {
       const updated = { ...pets };
       updated[pet.id] = pet;
@@ -91,10 +95,9 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
   //     setUserName(null);
   //   };
   // }, []);
-
   return (
     <div className="pet">
-      <PetHeader logout={logout} pets={pets} />
+      <PetHeader logout={logout} handleHomeMenu={goOutWriteForm} pets={pets} />
 
       <div className="pet-wrapper">
         <PetAsideMenu

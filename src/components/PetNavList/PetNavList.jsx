@@ -22,7 +22,11 @@ const PetNavList = ({ handleEdit, removePet, pet }) => {
   return (
     <li>
       <div className="pet-panel">
-        <span className="pet-img"></span>
+        <div className="pet-img">
+          <span className="center">
+            <img src={pet.imgURL} alt="" />
+          </span>
+        </div>
         <span className="pet-name">{pet.name}</span>
         <button className="btn-edit" onClick={handleEditForm}>
           <BiEdit size="18" />
