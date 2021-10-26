@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import "./AddPetForm.scss";
-// import ReactDatePicker from "react-datepicker";
-// import { addDays } from "date-fns";
-// import "react-datepicker/dist/react-datepicker.css";
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardDatePicker,
-// } from "@material-ui/pickers";
-// import DateFnsUtils from "@date-io/date-fns";
-// import moment from "moment";
-
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker, Radio, Select } from "antd";
 import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
+const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
   const [file, setFile] = useState({ fileName: null, fileURL: null });
   //react-hook-form 사용
   //control 외부 라이브러리 제어
@@ -69,7 +59,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             <li>
-              <label htmlFor="name">Name</label>
+              <label className="label" htmlFor="name">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -89,7 +81,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="breed">Breed</label>
+              <label className="label" htmlFor="breed">
+                Breed
+              </label>
               <input
                 type="text"
                 id="breed"
@@ -109,7 +103,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="weight">Weight</label>
+              <label className="label" htmlFor="weight">
+                Weight
+              </label>
               <input
                 type="text"
                 id="weight"
@@ -131,7 +127,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="size">Size</label>
+              <label className="label" htmlFor="size">
+                Size
+              </label>
               <Controller
                 control={control}
                 id="size"
@@ -149,8 +147,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
             </li>
             <li>
               <div className="inp-datepicker">
-                <label htmlFor="birth">Birthday</label>
-
+                <label className="label" htmlFor="birth">
+                  Birthday
+                </label>
                 <Controller
                   control={control}
                   name="birthDate"
@@ -180,7 +179,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
             </li>
             <li>
               <div className="inp-datepicker">
-                <label htmlFor="shot">광견병 주사 접종일</label>
+                <label className="label" htmlFor="shot">
+                  광견병 주사 접종일
+                </label>
                 <Controller
                   control={control}
                   name="shotDate"
@@ -201,7 +202,9 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
               {errors.shotDate && <p>마지막 접종 날짜를 선택해주세요.</p>}
             </li>
             <li>
-              <label htmlFor="gender">Gender</label>
+              <label className="label" htmlFor="gender">
+                Gender
+              </label>
               <Controller
                 control={control}
                 id="gender"
@@ -220,13 +223,18 @@ const AddPetForm = ({ InputFile, createAndUpdatePet }) => {
               {errors.gender && <p>성별을 선택해주세요.</p>}
             </li>
             <li>
+              <span className="label">펫 이미지 업로드</span>
               <InputFile name={file.fileName} onFileChange={onFileChange} />
             </li>
           </ul>
-
-          <button type="submit" className="btn-submit">
-            확인
-          </button>
+          <div className="btn-wrap">
+            <button type="submit" className="btn">
+              완료
+            </button>
+            <button type="submit" className="btn" onClick={onClickCancel}>
+              취소
+            </button>
+          </div>
         </form>
       </div>
     </section>

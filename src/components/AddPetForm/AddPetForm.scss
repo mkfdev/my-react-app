@@ -1,3 +1,4 @@
+//AddPetForm, EditPetForm CSS
 .petForm {
   ul {
     display: flex;
@@ -11,14 +12,15 @@
       width: 50%;
     }
   }
-  label {
+  .label {
     display: block;
     margin-top: 1.4em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
     font-size: 14px;
   }
   input {
-    width: 45%;
-    margin-top: 5px;
+    width: 35%;
     padding: 8px 6px;
     border: 0;
     border-bottom: 1px solid $black;
@@ -29,8 +31,21 @@
       width: 100%;
     }
   }
-  .btn-submit {
+  .btn-wrap {
     display: flex;
-    margin-left: auto;
+    justify-content: flex-end;
+    margin-top: 2em;
+    .btn {
+      width: 100px;
+      height: 34px;
+      margin: 0 0.2em;
+      color: $white;
+      background-color: $blue;
+      border-radius: 10em;
+      transition: all 0.2s ease-in;
+      &:hover {
+        background-color: $black;
+      }
+    }
   }
 }

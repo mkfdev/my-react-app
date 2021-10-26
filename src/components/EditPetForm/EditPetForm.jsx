@@ -5,7 +5,7 @@ import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment"; //날짜,시간,데이터 조작에 유용한 lib
 import "antd/dist/antd.css";
 
-const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
+const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
   const { imgName, imgURL } = pet;
   const [file, setFile] = useState({ fileName: imgName, fileURL: imgURL });
 
@@ -32,8 +32,6 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
   };
 
   const onSubmit = data => {
-    console.log(data);
-    console.log(file.fileName, file.fileURL);
     //data에 fileName, fileURL 추가해서 보내기
     const updated = {
       id: pet.id,
@@ -70,7 +68,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             <li>
-              <label htmlFor="name">Name</label>
+              <label className="label" htmlFor="name">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -90,7 +90,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="breed">Breed</label>
+              <label className="label" htmlFor="breed">
+                Breed
+              </label>
               <input
                 type="text"
                 id="breed"
@@ -110,7 +112,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="weight">Weight</label>
+              <label className="label" htmlFor="weight">
+                Weight
+              </label>
               <input
                 type="text"
                 id="weight"
@@ -132,7 +136,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
               )}
             </li>
             <li>
-              <label htmlFor="size">Size</label>
+              <label className="label" htmlFor="size">
+                Size
+              </label>
               <Controller
                 control={control}
                 id="size"
@@ -150,7 +156,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
             </li>
             <li>
               <div className="inp-datepicker">
-                <label htmlFor="birth">Birthday</label>
+                <label className="label" htmlFor="birth">
+                  Birthday
+                </label>
                 <Controller
                   control={control}
                   name="birthDate"
@@ -177,7 +185,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
             </li>
             <li>
               <div className="inp-datepicker">
-                <label htmlFor="shot">광견병 주사 접종일</label>
+                <label className="label" htmlFor="shot">
+                  광견병 주사 접종일
+                </label>
                 <Controller
                   control={control}
                   name="shotDate"
@@ -200,7 +210,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
               {errors.shotDate && <p>마지막 접종 날짜를 선택해주세요.</p>}
             </li>
             <li>
-              <label htmlFor="gender">Gender</label>
+              <label className="label" htmlFor="gender">
+                Gender
+              </label>
               <Controller
                 control={control}
                 id="gender"
@@ -219,15 +231,21 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, pet }) => {
               {errors.gender && <p>성별을 선택해주세요.</p>}
             </li>
             <li>
+              <span className="label">펫 이미지 업로드</span>
               <div className="pet-imgUploader">
                 <InputFile name={file.fileName} onFileChange={onFileChange} />
               </div>
             </li>
           </ul>
 
-          <button type="submit" className="btn-submit">
-            수정
-          </button>
+          <div className="btn-wrap">
+            <button type="submit" className="btn">
+              수정
+            </button>
+            <button type="submit" className="btn" onClick={onClickCancel}>
+              취소
+            </button>
+          </div>
         </form>
       </div>
     </section>
