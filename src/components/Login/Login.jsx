@@ -64,7 +64,7 @@ const Login = ({ authService }) => {
         dispatch(clearUser());
       }
     });
-  }, []);
+  }, [authService]);
 
   return (
     <div className="auth">

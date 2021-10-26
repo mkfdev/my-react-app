@@ -1,21 +1,19 @@
 import React from "react";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinFill } from "react-icons/ri";
+import "./PetNavList.scss";
 
 const PetNavList = ({ handleEdit, removePet, pet }) => {
-  // const onHandleForm = e => {
-  //   // Edit 버튼 클릭시, "btn-edit" 전달하여
-  //   // PetInfo 컴포넌트에서 Edit Form 오픈
-  //   handleForm(e);
-  // };
-
+  const DEFAULT = "/assets/pet.jpg";
+  const img_url = pet.imgURL || DEFAULT;
   const handleEditForm = e => {
-    // e.preventDefault();
+    e.preventDefault();
     handleEdit(e.currentTarget.className.substr(4), pet);
   };
 
   //해당하는 pet 삭제
-  const handleDelete = () => {
+  const handleDelete = e => {
+    e.preventDefault();
     removePet(pet);
   };
 
@@ -24,7 +22,7 @@ const PetNavList = ({ handleEdit, removePet, pet }) => {
       <div className="pet-panel">
         <div className="pet-img">
           <span className="center">
-            <img src={pet.imgURL} alt="" />
+            <img src={img_url} alt="" />
           </span>
         </div>
         <span className="pet-name">{pet.name}</span>

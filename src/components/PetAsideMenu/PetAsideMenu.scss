@@ -42,56 +42,6 @@
         text-align: center;
         margin: 1em 0;
       }
-      .pet-panel {
-        position: relative;
-        width: 64px;
-        margin: 0 auto;
-      }
-      .pet-img {
-        position: relative;
-        padding-top: 100%;
-        overflow: hidden;
-        display: inline-block;
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        background-color: $white;
-        overflow: hidden;
-        .center {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          transform: translate(50%, 50%);
-        }
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          max-width: 100%;
-          height: auto;
-          transform: translate(-50%, -50%);
-        }
-      }
-      .pet-name {
-        display: block;
-      }
-      .btn-edit,
-      .btn-remove {
-        position: absolute;
-        top: 0;
-        padding: 0;
-        &:hover {
-          color: $green;
-        }
-      }
-      .btn-edit {
-        right: 8px;
-      }
-      .btn-remove {
-        right: -10px;
-      }
     }
   }
 }

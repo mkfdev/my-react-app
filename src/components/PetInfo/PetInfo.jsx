@@ -10,10 +10,8 @@ import PetHeader from "../PetHeader/PetHeader";
 import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
 import PetList from "../PetList/PetList";
 import "./PetInfo.scss";
-import { valueToNode } from "@babel/types";
 
 const PetInfo = ({ InputFile, authService, petRepository }) => {
-  // const [userName, setUserName] = useState(null);
   const history = useHistory();
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
@@ -36,7 +34,6 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
 
   const createAndUpdatePet = pet => {
     console.log("createAndUpdatePet", pet);
-    // setLoading(true);
     setPets(pets => {
       const updated = { ...pets };
       updated[pet.id] = pet;
@@ -71,7 +68,7 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
         history.push("/login");
       }
     });
-  }, []);
+  }, [authService]);
 
   useEffect(() => {
     if (!userId) {
@@ -84,25 +81,14 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
     return () => updateSync();
   }, [userId]);
 
-  //firebase에서 현재 로그인한 사용자 name 가져오기
-  // useEffect(() => {
-  //   onAuthStateChanged(authService, user => {
-  //     if (user) {
-  //       setUserName(user.displayName);
-  //     }
-  //   });
-  //   return () => {
-  //     setUserName(null);
-  //   };
-  // }, []);
   return (
     <div className="pet">
-      <PetHeader logout={logout} handleHomeMenu={goOutWriteForm} pets={pets} />
+      <PetHeader logout={logout} handleHomeMenu={goOutWriteForm} />
 
       <div className="pet-wrapper">
         <PetAsideMenu
-          removePet={removePet}
           changeFormRole={changeFormRole}
+          removePet={removePet}
           pets={pets}
         />
 
@@ -142,12 +128,14 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
             <AddPetForm
               InputFile={InputFile}
               createAndUpdatePet={createAndUpdatePet}
+              onClickCancel={goOutWriteForm}
             />
           ) : (
             <EditPetForm
               InputFile={InputFile}
-              pet={selectedPet}
               createAndUpdatePet={createAndUpdatePet}
+              onClickCancel={goOutWriteForm}
+              pet={selectedPet}
             />
           )}
         </div>
