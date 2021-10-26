@@ -22,6 +22,8 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
   //제어 컴포넌트(ANTD)는 controller에서 초기화 설정
   useEffect(() => {
     reset(pet);
+    //파일은 reset폼에서 제어 받지 않음, fileName과 fileURL직접 초기화
+    setFile({ fileName: pet.imgName, fileURL: pet.imgURL });
   }, [reset, pet]);
 
   const onFileChange = file => {

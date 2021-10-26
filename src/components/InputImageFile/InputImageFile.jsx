@@ -44,9 +44,12 @@ const InputImageFile = ({ imageUploader, name, onFileChange }) => {
       />
       <FiPaperclip />
       <span className="image-name">{name || "No File"}</span>
-      <button className="btn-image-remove" onClick={onBtnRemove}>
-        <TiDelete size="24" />
-      </button>
+
+      {name && (
+        <button className="btn-image-remove" onClick={onBtnRemove}>
+          <TiDelete size="24" />
+        </button>
+      )}
 
       {loading && <span className="loader">Loading...</span>}
       {!loading && (

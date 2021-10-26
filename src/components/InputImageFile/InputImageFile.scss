@@ -11,13 +11,16 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    & + .btn-image {
+      margin-left: 0.5em;
+    }
   }
   .btn-image {
     padding: 0.2em 0.8em;
     border-radius: 4px;
     background-color: $black;
     color: $white;
-    transition: all 0.2s ease-in;
+    transition: background-color 0.2s ease-in;
     text-transform: uppercase;
     &:hover {
       background-color: $blue;
