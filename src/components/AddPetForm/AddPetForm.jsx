@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import "./AddPetForm.scss";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker, Radio, Select } from "antd";
@@ -6,7 +6,7 @@ import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
 import "antd/dist/antd.css";
 
-const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
+const AddPetForm = memo(({ InputFile, createAndUpdatePet, onClickCancel }) => {
   const [file, setFile] = useState({ fileName: null, fileURL: null });
   //react-hook-form 사용
   //control 외부 라이브러리 제어
@@ -18,7 +18,6 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
   } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
     const pet = {
       id: Date.now(),
       name: data.name,
@@ -40,9 +39,10 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
   const dateFormat = "YYYY-MM-DD";
 
   //DatePicker disabledDate 설정
-  function disabledDate(current) {
+  const disabledDate = current => {
     return current && current > moment().startOf("day");
-  }
+  };
+
   //Select Option
   const { Option } = Select;
 
@@ -237,6 +237,6 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
       </div>
     </section>
   );
-};
+});
 
 export default AddPetForm;

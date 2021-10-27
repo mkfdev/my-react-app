@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
@@ -19,9 +19,9 @@ const petRepository = new PetRepository(firebaseApp);
 const imageUploader = new ImageUploader();
 //DI, 컴포넌트를 만들어서 전달(재사용성, 확장성)
 //다른 props를 받아 사용할 수 있음. 추가로 다른 서비스를 한번에 전달 할 수 있음
-const InputFile = props => (
+const InputFile = memo(props => (
   <InputImageFile {...props} imageUploader={imageUploader} />
-);
+));
 
 // -리덕스: 오브젝트만 받을 수 있음
 // -promiseMiddleware, ReduxTunk미들웨어: 프로미스,함수를 받을 수 있게 함

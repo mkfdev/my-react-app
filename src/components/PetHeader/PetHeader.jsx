@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import "./PetHeader.scss";
 
-const PetHeader = ({ logout, handleHomeMenu }) => {
+const PetHeader = memo(({ logout, handleHomeMenu }) => {
   const handleLogout = () => {
     logout();
   };
@@ -33,6 +33,6 @@ const PetHeader = ({ logout, handleHomeMenu }) => {
       </button>
     </header>
   );
-};
+});
 
 export default PetHeader;

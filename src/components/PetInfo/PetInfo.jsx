@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router";
 import { FcIdea } from "react-icons/fc";
+import PetHeader from "../PetHeader/PetHeader";
 import AddPetForm from "../AddPetForm/AddPetForm";
 import EditPetForm from "../EditPetForm/EditPetForm";
-import PetHeader from "../PetHeader/PetHeader";
 import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
 import PetList from "../PetList/PetList";
 import { IoIosPaw } from "react-icons/io";
@@ -12,7 +12,7 @@ import "./PetInfo.scss";
 
 const PetInfo = ({ InputFile, authService, petRepository }) => {
   const history = useHistory();
-  const historyState = history?.location?.state;
+  const historyState = history.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [pets, setPets] = useState({});
   const [petForm, setPetForm] = useState(false);
@@ -27,46 +27,53 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
     setPetForm(true);
   };
 
-  const goOutWriteForm = () => {
+  //함수 변경없음. 재사용(캐시x)
+  const goOutWriteForm = useCallback(() => {
     setPetForm(false);
-  };
+  }, []);
 
-  const createAndUpdatePet = pet => {
-    setPets(pets => {
-      const updated = { ...pets };
-      updated[pet.id] = pet;
-      return updated;
-    });
+  const createAndUpdatePet = useCallback(
+    pet => {
+      setPets(pets => {
+        const updated = { ...pets };
+        updated[pet.id] = pet;
+        return updated;
+      });
 
-    petRepository.savePet(userId, pet);
-    setPetForm(false);
-  };
+      petRepository.savePet(userId, pet);
+      setPetForm(false);
+    },
+    [petRepository, userId],
+  );
 
-  const removePet = pet => {
-    setPets(pets => {
-      const updated = { ...pets };
-      delete updated[pet.id];
-      return updated;
-    });
-    petRepository.removePet(userId, pet);
-    setPetForm(false);
-  };
+  const removePet = useCallback(
+    pet => {
+      setPets(pets => {
+        const updated = { ...pets };
+        delete updated[pet.id];
+        return updated;
+      });
+      petRepository.removePet(userId, pet);
+      setPetForm(false);
+    },
+    [petRepository, userId],
+  );
 
-  const logout = () => {
+  //함수 재사용, authService가 변경되면 다시 만들어지도록
+  const logout = useCallback(() => {
     authService.logout();
-  };
+  }, [authService]);
 
   useEffect(() => {
     //auth 상태 지켜보기
     authService.onAuthChange(user => {
-      console.log("user", user);
       if (user) {
         setUserId(user.uid);
       } else {
         history.push("/login");
       }
     });
-  }, [authService]);
+  }, [authService, history, userId]);
 
   useEffect(() => {
     if (!userId) {
@@ -77,7 +84,7 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
     });
     //component unmout
     return () => updateSync();
-  }, [userId]);
+  }, [userId, petRepository]);
 
   return (
     <div className="pet">

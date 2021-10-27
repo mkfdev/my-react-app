@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import "./InputImageFile.scss";
 import { FiPaperclip } from "react-icons/fi";
 import { TiDelete } from "react-icons/ti";
 
 //onFileChange 다른 파일을 선택했을때
-const InputImageFile = ({ imageUploader, name, onFileChange }) => {
+const InputImageFile = memo(({ imageUploader, name, onFileChange }) => {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef();
   const onBtnClick = e => {
@@ -60,6 +60,6 @@ const InputImageFile = ({ imageUploader, name, onFileChange }) => {
       )}
     </div>
   );
-};
+});
 
 export default InputImageFile;
