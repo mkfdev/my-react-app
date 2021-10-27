@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import "./PetList.scss";
 import { FaRegBell, FaGratipay } from "react-icons/fa";
 
@@ -9,6 +10,7 @@ const PetList = ({ pet }) => {
   const img_url = imgURL || DEFAULT;
   const [age, setAge] = useState(null);
   const [personAge, setPersonAge] = useState(null);
+  const [term, setTerm] = useState(null);
 
   const today = new Date();
 
@@ -54,9 +56,20 @@ const PetList = ({ pet }) => {
     }
   };
 
+  const calcShotDate = () => {
+    //오늘과 shotDate 비교, 오늘로부터 몇 일이 경과했는지 계산
+    //Math.abs 절대값 반환
+    const updated = Math.abs(
+      moment(shotDate, "YYYY-MM-DD").diff(today, "days"),
+    );
+    setTerm(updated);
+  };
+
   useEffect(() => {
     //강아지 나이 계산기
     calcPetAge();
+    //주사 접종 경과일 계산
+    calcShotDate();
   });
 
   return (
@@ -75,7 +88,7 @@ const PetList = ({ pet }) => {
             </p>
             <p>
               <FaRegBell size="18" />
-              {name}의 다음 접종일이 20일 남았습니다.
+              {name}가 광견병 주사를 접종한지 {term}일이 지났습니다.
             </p>
           </div>
           <p>이름: {name}</p>
