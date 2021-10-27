@@ -56,9 +56,10 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
   //DatePicker disabledDate 설정
   //moment().startOf("day") 오늘 오전 12시
   //current 값은 오늘 오전12시 이후의 날짜
-  function disabledDate(current) {
+  //DatePicker disabledDate 설정
+  const disabledDate = current => {
     return current && current > moment().startOf("day");
-  }
+  };
 
   //select Option
   const { Option } = Select;

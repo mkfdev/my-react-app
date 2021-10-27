@@ -42,7 +42,6 @@ const Login = ({ authService }) => {
   useEffect(() => {
     //user 로그인 상태 지켜보기
     authService.onAuthChange(user => {
-      console.log("user", user);
       //user 로그인
       if (user) {
         // history.push("/petInfo");
@@ -56,7 +55,7 @@ const Login = ({ authService }) => {
         dispatch(clearUser());
       }
     });
-  }, [authService]);
+  });
 
   return (
     <div className="auth">

@@ -7,7 +7,6 @@ const PetAsideMenu = ({ changeFormRole, removePet, pets }) => {
   const handleForm = e => {
     // Add 버튼 클릭시, "btn-add" 전달하여
     // PetInfo 컴포넌트에서 Add Form 오픈
-    // changeFormRole(e.currentTarget.className);
     changeFormRole(e.currentTarget.className.substr(4), null);
   };
 
