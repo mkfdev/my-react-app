@@ -66,7 +66,6 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
                 type="text"
                 id="name"
                 name="name"
-                className="inp-name"
                 placeholder="pet's name"
                 {...register("name", {
                   required: true,
@@ -88,7 +87,6 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
                 type="text"
                 id="breed"
                 name="breed"
-                className="inp-breed"
                 placeholder="pet's breed"
                 {...register("breed", {
                   required: true,
@@ -106,19 +104,19 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
               <label className="label" htmlFor="weight">
                 Weight
               </label>
-              <input
-                type="text"
-                id="weight"
-                name="weight"
-                className="inp-weight"
-                placeholder="pet's weight"
-                {...register("weight", {
-                  required: true,
-                  pattern: /^[^0](\d{1,2})?$/,
-                })}
-              />
-              {/* /^[^0](\d{1,2}([.]\d{0,1})?)?$/ */}
-              kg
+              <span className="inp-unit">
+                <input
+                  type="text"
+                  id="weight"
+                  name="weight"
+                  className="inp-weight"
+                  placeholder="pet's weight"
+                  {...register("weight", {
+                    required: true,
+                    pattern: /^[^0](\d{1,2})?$/,
+                  })}
+                />
+              </span>
               {errors.weight && errors.weight.type === "required" && (
                 <p>강아지의 몸무게를 입력해주세요</p>
               )}

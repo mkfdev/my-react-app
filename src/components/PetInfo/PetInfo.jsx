@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import { FcIdea } from "react-icons/fc";
-import { IoArrowForwardCircle } from "react-icons/io5";
 import AddPetForm from "../AddPetForm/AddPetForm";
 import EditPetForm from "../EditPetForm/EditPetForm";
 import PetHeader from "../PetHeader/PetHeader";
 import PetAsideMenu from "../PetAsideMenu/PetAsideMenu";
 import PetList from "../PetList/PetList";
+import { IoIosPaw } from "react-icons/io";
 import "./PetInfo.scss";
 
 const PetInfo = ({ InputFile, authService, petRepository }) => {
@@ -95,13 +94,17 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
           {/* Empty View or Form(add or Edit) */}
           {!petForm ? (
             <section className="pet-contents">
-              <p className="title">
+              <h2 className="title">
+                <IoIosPaw />
+                등록된 펫 정보
+              </h2>
+              {/* <p className="title">
                 안녕하세요, <br />
                 다양한 반려견 사진들을 구경해보세요!
                 <Link to="search" className="link">
                   구경하러 가기 <IoArrowForwardCircle size="20" />
                 </Link>
-              </p>
+              </p> */}
 
               {/* 객체의 길이 체크 - length오류 */}
               {Object.keys(pets).length ? (

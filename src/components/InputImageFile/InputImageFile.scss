@@ -1,7 +1,10 @@
 .image-uploader {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   margin-top: 0.5em;
+  padding: 0.4em 0.8em;
+  background-color: $beige;
+  border-radius: 6px;
   .input-image {
     display: none;
   }
@@ -25,6 +28,9 @@
     &:hover {
       background-color: $blue;
     }
+  }
+  .btn-image-remove:hover {
+    color: $red;
   }
 
   .loader,
@@ -52,6 +58,15 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+}
+@include mobile-sm {
+  .image-uploader {
+    flex-direction: column;
+    .btn-image {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
     }
   }
 }

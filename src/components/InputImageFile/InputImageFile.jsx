@@ -42,6 +42,7 @@ const InputImageFile = ({ imageUploader, name, onFileChange }) => {
         name="file"
         onChange={onChange}
       />
+
       <FiPaperclip />
       <span className="image-name">{name || "No File"}</span>
 
