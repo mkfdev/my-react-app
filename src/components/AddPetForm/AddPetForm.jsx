@@ -229,7 +229,7 @@ const AddPetForm = memo(({ InputFile, createAndUpdatePet, onClickCancel }) => {
             <button type="submit" className="btn">
               등록
             </button>
-            <button type="submit" className="btn" onClick={onClickCancel}>
+            <button type="button" className="btn" onClick={onClickCancel}>
               취소
             </button>
           </div>

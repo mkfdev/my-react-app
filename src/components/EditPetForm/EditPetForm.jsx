@@ -243,7 +243,7 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
             <button type="submit" className="btn">
               수정
             </button>
-            <button type="submit" className="btn" onClick={onClickCancel}>
+            <button type="button" className="btn" onClick={onClickCancel}>
               취소
             </button>
           </div>
