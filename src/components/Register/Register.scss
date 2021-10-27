@@ -1,10 +1,8 @@
-@import 'form.scss';
-
-.btn-move {
-  text-decoration: none;
+.link-login {
   color: $green;
+  font-weight: bold;
   &:hover {
+    color: $green;
     text-decoration: underline;
-    font-weight: bold;
   }
 }

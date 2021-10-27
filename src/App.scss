@@ -1,47 +1,12 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
-* {
-  box-sizing: border-box;
-  font-family: "Spoqa Han Sans Neo", "Roboto", "sans-serif";
-}
-
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hgroup,
-p {
-  margin: 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-button {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
 .app-wrapper {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: $pc) {
+  .app-wrapper {
+    height: auto;
+  }
 }

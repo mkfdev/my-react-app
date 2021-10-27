@@ -2,7 +2,6 @@
   width: 75rem;
   padding: 2em;
   @include box-shadow(0, 2px, 22px, 2px, rgba(0, 0, 0, 0.75));
-
   &-wrapper {
     display: flex;
     flex-direction: row;
@@ -11,7 +10,7 @@
   }
   &-info {
     width: 80%;
-    padding-left: 40px;
+    padding-left: 2.5em;
   }
   &-contents {
     width: 100%;
@@ -42,5 +41,44 @@
       margin-top: 1em;
       font-size: 1.2rem;
     }
+  }
+}
+
+@media screen and (max-width: $pc) {
+  .pet {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .pet-contents {
+    padding-left: 0;
+  }
+}
+
+@include tablet {
+  .pet-wrapper {
+    height: 850px;
+    margin-top: 30px;
+  }
+}
+
+@include mobile {
+  .pet {
+    &-wrapper {
+      flex-direction: column;
+      height: auto;
+    }
+    &-info {
+      width: 100%;
+      margin-top: 1.6em;
+      padding-left: 0;
+    }
+  }
+}
+
+@include mobile-sm {
+  .pet {
+    padding: 1.2em;
   }
 }

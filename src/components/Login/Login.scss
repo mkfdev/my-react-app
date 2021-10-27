@@ -1,9 +1,9 @@
-@import "form.scss";
-
-.link-login {
-  color: $red;
+.link-register {
+  color: $green;
+  font-weight: bold;
   &:hover {
-    font-weight: bold;
+    color: $green;
+    text-decoration: underline;
   }
 }
 
@@ -26,5 +26,24 @@
     padding: 2px 6px;
     border-radius: 50%;
     background-color: #e6000078;
+  }
+  &-text {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+@include mobile-sm {
+  .auth {
+    width: 100%;
+    padding: 1.5em;
+    h1 {
+      height: auto;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto;
+    }
   }
 }

@@ -1,3 +1,4 @@
+//login, register component 공통
 .btn-submit {
   margin-top: 28px;
   margin-bottom: 7px;
@@ -40,9 +41,9 @@
     border-radius: 4px;
     border: 1px solid $blue;
   }
-
   &-wrapper {
     display: flex;
+    align-items: center;
     width: 100%;
   }
   &-form {
@@ -58,10 +59,26 @@
     }
   }
   &-image {
-    padding: 0 20px;
+    padding-left: 3em;
     width: 50%;
     img {
       width: 100%;
+    }
+  }
+}
+
+@include mobile-sm {
+  .auth {
+    padding: 1.5em;
+    &-wrapper {
+      flex-direction: column;
+    }
+    &-form {
+      width: 100%;
+    }
+    &-image {
+      width: 100%;
+      padding: 1.5em 2em 0;
     }
   }
 }

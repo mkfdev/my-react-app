@@ -229,7 +229,7 @@ const AddPetForm = ({ InputFile, createAndUpdatePet, onClickCancel }) => {
           </ul>
           <div className="btn-wrap">
             <button type="submit" className="btn">
-              완료
+              등록
             </button>
             <button type="submit" className="btn" onClick={onClickCancel}>
               취소

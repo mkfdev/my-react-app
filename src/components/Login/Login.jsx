@@ -14,7 +14,6 @@ const Login = ({ authService }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -26,13 +25,6 @@ const Login = ({ authService }) => {
   };
 
   //data {key : value} => {name : input value}
-  // const onSubmit = data => {
-  //   console.log(data);
-  // };
-
-  //watch('name') 해당 요소 실시간 체크
-  // console.log(watch('email'));
-
   const onSubmit = async data => {
     try {
       await authService.login(data.email, data.password);
@@ -78,9 +70,9 @@ const Login = ({ authService }) => {
         <span className="text-round">개</span>
       </h1>
       <h2>Get Started</h2>
-      <p>
+      <p className="auth-text">
         Don't have an account?{" "}
-        <Link className="link-login" to="register">
+        <Link className="link-register" to="register">
           sign up
         </Link>
       </p>

@@ -128,7 +128,6 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                   pattern: /^[^0](\d{1,2})?$/,
                 })}
               />
-              {/* /^[^0](\d{1,2}([.]\d{0,1})?)?$/ */}
               kg
               {errors.weight && errors.weight.type === "required" && (
                 <p>강아지의 몸무게를 입력해주세요</p>

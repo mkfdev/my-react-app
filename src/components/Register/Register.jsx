@@ -121,9 +121,9 @@ const Register = ({ authService }) => {
             />
             {errorMessage && <p>{errorMessage}</p>}
 
-            <div>
+            <div className="auth-text">
               Already have an account?{" "}
-              <Link className="btn-move" to="login">
+              <Link className="link-login" to="login">
                 Login
               </Link>
             </div>

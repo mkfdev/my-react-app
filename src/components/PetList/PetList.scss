@@ -20,7 +20,6 @@
     }
     .thumbnail-wrap {
       position: relative;
-      // padding-top: 100%;
       width: 30%;
       overflow: hidden;
       .center {
@@ -42,17 +41,91 @@
     }
     .details-wrap {
       width: 70%;
-      padding: 10px 20px;
+      padding: 1em 1.2em 1em 0;
       text-align: center;
       .info-box {
         display: inline-block;
-        margin-bottom: 5px;
-        padding: 8px 16px;
+        margin-bottom: 0.3em;
+        padding: 0.6em 0.8em 0.1em;
         border-radius: 10px;
         background-color: $beige;
+        p {
+          margin-top: 0;
+          margin-bottom: 0.5em;
+          font-weight: bold;
+        }
+        .info-icon {
+          vertical-align: middle;
+          margin-right: 0.3em;
+        }
+        .info-text {
+          vertical-align: middle;
+        }
       }
       p {
-        margin: 3px 0 0;
+        font-size: 0.8rem;
+        margin-top: 0.2em;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .pet {
+    &-card-list {
+      height: 770px;
+    }
+  }
+}
+
+@include mobile {
+  .pet {
+    &-card-list {
+      height: auto;
+      overflow-y: unset;
+      ul {
+        padding: 0;
+      }
+      .card-box {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include mobile-sm {
+  .pet-card-list {
+    ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    li {
+      width: 46%;
+      margin: 0.8em 2%;
+    }
+    .card-box {
+      flex-direction: column;
+    }
+    .thumbnail-wrap {
+      width: 100%;
+      padding-top: 100%;
+    }
+    .details-wrap {
+      width: 100%;
+      padding: 0 0 1em 0;
+      .info-box {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 174px;
+        padding: 0.8em 1em;
+        border-radius: 0;
+        p {
+          padding: 0;
+        }
+      }
+      p {
+        padding: 0 0.5em;
       }
     }
   }

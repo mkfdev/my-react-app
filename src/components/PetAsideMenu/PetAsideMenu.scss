@@ -18,7 +18,6 @@
       }
     }
     .btn-add {
-      margin-top: 15px;
       color: $black;
       &:hover {
         color: $blue;
@@ -41,6 +40,49 @@
         width: 50%;
         text-align: center;
         margin: 1em 0;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .pet {
+    &-asideMenu {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      .pet-nav-list {
+        li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .pet {
+    &-asideMenu {
+      width: 100%;
+      .pet-nav-list {
+        ul {
+          flex-direction: row;
+        }
+        li {
+          width: 16.6%;
+        }
+      }
+    }
+  }
+}
+
+@include mobile-sm {
+  .pet {
+    &-asideMenu {
+      .pet-nav-list {
+        li {
+          width: 33.3%;
+        }
       }
     }
   }

@@ -83,12 +83,16 @@ const PetList = ({ pet }) => {
         <div className="details-wrap">
           <div className="info-box">
             <p>
-              <FaGratipay size="18" />
-              {name}는 사람 나이 {personAge}살, 강아지 나이 {age}살 입니다.
+              <FaGratipay className="info-icon" size="18" />
+              <span className="info-text">
+                {name}는 사람 나이 {personAge}살, 강아지 나이 {age}살 입니다.
+              </span>
             </p>
             <p>
-              <FaRegBell size="18" />
-              {name}가 광견병 주사를 접종한지 {term}일이 지났습니다.
+              <FaRegBell className="info-icon" size="18" />
+              <span className="info-text">
+                {name}가 광견병 주사를 접종한지 {term}일이 지났습니다.
+              </span>
             </p>
           </div>
           <p>이름: {name}</p>

@@ -1,0 +1,49 @@
+$red: #fa5252;
+$blue: #339af0;
+$green: #40c057;
+$yellow: #fcc419;
+$white: #fff;
+$black: #000;
+$lightViolet: #e8eaf6;
+$beige: #f5f5dc;
+$purple: #681ce2;
+$peach: #e6000078;
+$peachBold: #e60000a6;
+$lightBlue1: #7ca1a3;
+$lightBlue2: #88d6d9;
+
+@mixin box-shadow($top, $left, $blur, $spread, $color) {
+  -webkit-box-shadow: $top $left $blur $spread $color;
+  -moz-box-shadow: $top $left $blur $spread $color;
+  box-shadow: $top $left $blur $spread $color;
+}
+
+//Breakpoints
+$mobile-s: 576px;
+$mobile: 767px;
+$tablet: 1023px;
+$pc: 1024px;
+
+@mixin mobile-sm {
+  @media screen and (max-width: $mobile-s) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $mobile + 1) and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $pc) {
+    @content;
+  }
+}
