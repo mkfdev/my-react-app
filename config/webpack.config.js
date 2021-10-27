@@ -516,7 +516,7 @@ module.exports = function (webpackEnv) {
                   sourceMap: isEnvProduction
                     ? shouldUseSourceMap
                     : isEnvDevelopment,
-                  additionalData: `@import 'base';`,
+                  additionalData: `@import '_variables';`,
                 },
               }),
               // Don't consider CSS imports dead code even if the

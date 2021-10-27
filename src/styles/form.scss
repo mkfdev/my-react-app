@@ -1,17 +1,4 @@
 //login, register component 공통
-.btn-submit {
-  margin-top: 28px;
-  margin-bottom: 7px;
-  border: 0;
-  color: $white;
-  background-color: $blue;
-  cursor: pointer;
-  transition: all 0.2s ease-in;
-  &:hover {
-    background-color: $black;
-  }
-}
-
 .auth {
   width: 64rem;
   padding: 2em;
@@ -63,6 +50,18 @@
     width: 50%;
     img {
       width: 100%;
+    }
+  }
+  .btn-submit {
+    margin-top: 28px;
+    margin-bottom: 7px;
+    border: 0;
+    color: $white;
+    background-color: $blue;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+      background-color: $black;
     }
   }
 }

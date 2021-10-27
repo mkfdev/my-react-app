@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { DatePicker, Radio, Select } from "antd";
 import locale from "antd/es/calendar/locale/ko_KR";
 import moment from "moment";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 const AddPetForm = memo(({ InputFile, createAndUpdatePet, onClickCancel }) => {
   const [file, setFile] = useState({ fileName: null, fileURL: null });
