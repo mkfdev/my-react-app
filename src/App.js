@@ -5,17 +5,11 @@ import Login from "./components/Login/Login";
 import PetInfo from "./components/PetInfo/PetInfo";
 import Register from "./components/Register/Register";
 import "./App.scss";
+import PetSearch from "./components/PetSearch/PetSearch";
 
 //redux hook
 // import { useSelector } from "react-redux";
 function App({ InputFile, authService, petRepository }) {
-  //router 하위 컴포넌트에서 사용가능
-  //loading기능은 넣고싶은데..일단 pass
-  // const isLoading = useSelector(state => state.user.isLoading);
-
-  // if (isLoading) {
-  //   return <div>isLoading...</div>;
-  // } else {
   return (
     <div className="app-wrapper">
       <Switch>
@@ -32,6 +26,9 @@ function App({ InputFile, authService, petRepository }) {
             authService={authService}
             petRepository={petRepository}
           />
+        </Route>
+        <Route path="/search">
+          <PetSearch />
         </Route>
       </Switch>
     </div>

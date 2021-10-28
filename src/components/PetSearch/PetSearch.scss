@@ -1,0 +1,40 @@
+.pet {
+  &-search {
+    .pet-wrapper {
+      flex-direction: column;
+    }
+  }
+  &-search-form {
+    margin-top: 1em;
+    text-align: center;
+    .search-title {
+      display: inline-block;
+      margin-right: 1em;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+    select {
+      padding: 0.5em 0.2em;
+      border: 0;
+      border-bottom: 1px solid $black;
+    }
+    .btn-search {
+      margin-left: 0.5em;
+      padding: 0.5em 0.8em;
+      font-size: 0.8rem;
+      color: $white;
+      background-color: $purple2;
+    }
+  }
+  .loading {
+    width: 200px;
+    height: 200px;
+    background-color: $red;
+  }
+  &-search-result {
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
