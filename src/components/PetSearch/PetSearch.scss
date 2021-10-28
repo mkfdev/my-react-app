@@ -10,10 +10,12 @@
     .search-title {
       display: inline-block;
       margin-right: 1em;
+      font-weight: bold;
       font-size: 0.9rem;
       vertical-align: middle;
     }
     select {
+      width: 250px;
       padding: 0.5em 0.2em;
       border: 0;
       border-bottom: 1px solid $black;
@@ -26,15 +28,61 @@
       background-color: $purple2;
     }
   }
-  .loading {
-    width: 200px;
-    height: 200px;
-    background-color: $red;
-  }
   &-search-result {
+    .title {
+      font-size: 1.2rem;
+    }
+  }
+  &-search-list {
+    display: flex;
+    width: 100%;
+    padding: 0 2em;
+    justify-content: center;
+    margin-top: 1.5em;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
     img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
+    }
+  }
+  .loading {
+    display: flex;
+    height: 400px;
+    align-items: center;
+  }
+  //Size Overriding
+  .loader,
+  .loader:after {
+    width: 6em;
+    height: 6em;
+  }
+  .loader {
+    margin: 0 auto;
+    border-width: 1em;
+  }
+}
+
+@include mobile-sm {
+  .pet {
+    &-search-form {
+      text-align: center;
+      .search-title {
+        display: block;
+        margin: 0;
+        text-align: left;
+      }
+      select {
+        padding: 0.5em 0.2em;
+      }
+      .btn-search {
+        display: block;
+        width: 50%;
+        margin: 1.2em auto 0;
+        padding: 0.5em 0.8em;
+      }
     }
   }
 }

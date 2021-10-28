@@ -28,7 +28,7 @@ function App({ InputFile, authService, petRepository }) {
           />
         </Route>
         <Route path="/search">
-          <PetSearch />
+          <PetSearch authService={authService} />
         </Route>
       </Switch>
     </div>
