@@ -1,14 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PetAPI from "../../service/pet_api";
+import PetDataList from "../PetDataList/PetDataList";
 import PetHeader from "../PetHeader/PetHeader";
 import "./PetSearch.scss";
 
 const petAPI = new PetAPI();
 
 const PetSearch = ({ authService }) => {
+  //pet data
   const [petData, setPetData] = useState([]);
+  //select option data
   const [breeds, setBreeds] = useState([]);
   const [loading, setLoading] = useState(false);
+  //selected data id
+  const [selectedId, setSelectedId] = useState(null);
 
   const selectRef = useRef();
 
@@ -34,8 +39,9 @@ const PetSearch = ({ authService }) => {
   };
 
   //선택한 breeds 받아서 get 요청보내고 일치하는 data 받아옴
-  const onSelectBreeds = async () => {
+  const getDataSelectedBreeds = async () => {
     const selectedBreeds = selectRef.current.value;
+    setSelectedId(selectedBreeds);
     setLoading(true);
     try {
       const res = await petAPI.searchImage(selectedBreeds);
@@ -47,12 +53,10 @@ const PetSearch = ({ authService }) => {
   };
 
   useEffect(() => {
-    if (petData.length === 0) {
-      //랜덤 이미지 로드
-      loadPetimages();
-      //셀렉트 옵션값 breeds api 로드
-      loadBreeds();
-    }
+    //랜덤 이미지 로드
+    loadPetimages();
+    //셀렉트 옵션값 breeds api 로드
+    loadBreeds();
   }, []);
 
   //함수 재사용, authService가 변경되면 다시 만들어지도록
@@ -75,34 +79,35 @@ const PetSearch = ({ authService }) => {
               </option>
             ))}
         </select>
-        <button type="button" className="btn-search" onClick={onSelectBreeds}>
+        <button
+          type="button"
+          className="btn-search"
+          onClick={getDataSelectedBreeds}
+        >
           검색
         </button>
+        <span className="sub-text">*검색결과 최대 10개 노출</span>
       </div>
       <div className="pet-wrapper">
         <div className="pet-search-result">
-          <h2 className="title">
-            펫 사진 리스트{" "}
-            <span className="sub-text">*검색결과 최대 10개 노출</span>
-          </h2>
+          <h2 className="title">반려동물 사진&amp;동영상 리스트</h2>
           {loading && (
             <div className="loading">
               <span className="loader">loading...</span>
             </div>
           )}
+          {/* 선택된 pet에 대한 정보 - 한번만 출력하기 */}
+
           {!loading && (
             <div className="pet-search-list">
+              {selectedId && (
+                <PetDataList selectedId={selectedId} petAPI={petAPI} />
+              )}
               <ul>
                 {petData &&
                   petData.map(item => (
                     <li key={item.id}>
-                      <span>
-                        <img src={item.url} alt="" />
-                      </span>
-                      <div>
-                        <span>{item.temperament}</span>
-                        {/* <span>{item.weight}kgs</span> */}
-                      </div>
+                      <img src={item.url} alt="" />
                     </li>
                   ))}
               </ul>
