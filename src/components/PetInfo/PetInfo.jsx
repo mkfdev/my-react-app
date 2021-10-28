@@ -105,14 +105,6 @@ const PetInfo = ({ InputFile, authService, petRepository }) => {
                 <IoIosPaw />
                 등록된 펫 정보
               </h2>
-              {/* <p className="title">
-                안녕하세요, <br />
-                다양한 반려견 사진들을 구경해보세요!
-                <Link to="search" className="link">
-                  구경하러 가기 <IoArrowForwardCircle size="20" />
-                </Link>
-              </p> */}
-
               {/* 객체의 길이 체크 - length오류 */}
               {Object.keys(pets).length ? (
                 <div className="pet-card-list">

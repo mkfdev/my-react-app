@@ -73,7 +73,7 @@
 @include tablet {
   .pet {
     &-card-list {
-      height: 770px;
+      height: auto;
     }
   }
 }

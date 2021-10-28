@@ -2,6 +2,7 @@ import React from "react";
 import { MdAddCircle } from "react-icons/md";
 import "./PetAsideMenu.scss";
 import PetNavList from "../PetNavList/PetNavList";
+import { Link } from "react-router-dom";
 
 const PetAsideMenu = ({ changeFormRole, removePet, pets }) => {
   const handleForm = e => {
@@ -12,6 +13,12 @@ const PetAsideMenu = ({ changeFormRole, removePet, pets }) => {
 
   return (
     <aside className="pet-asideMenu">
+      <p className="sub-text">
+        다양한 반려견 사진
+        <Link to="search" className="link-search">
+          구경하러 가기
+        </Link>
+      </p>
       <p className="text">
         마이펫을 등록해보세요!<span>(최대 6마리 등록 가능)</span>
       </p>

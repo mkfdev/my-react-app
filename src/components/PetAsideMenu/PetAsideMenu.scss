@@ -1,4 +1,18 @@
 .pet {
+  .sub-text {
+    display: inline-block;
+    margin-bottom: 1em;
+  }
+  .link-search {
+    display: block;
+    margin-left: 0.5em;
+    text-decoration: none;
+    color: $blue;
+    font-weight: bold;
+    &:hover {
+      color: $green;
+    }
+  }
   &-asideMenu {
     display: flex;
     flex-direction: column;

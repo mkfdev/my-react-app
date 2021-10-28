@@ -1,6 +1,6 @@
 .pet {
   width: 75rem;
-  padding: 2em;
+  padding: 2em 2em 4em;
   @include box-shadow(0, 2px, 22px, 2px, rgba(0, 0, 0, 0.75));
   &-wrapper {
     display: flex;
@@ -16,19 +16,10 @@
     width: 100%;
     padding-left: 40px;
     .title {
+      display: inline-block;
       margin-bottom: 0.5em;
       font-weight: bold;
       font-size: 1.2rem;
-    }
-    .link {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: $blue;
-      font-size: 1rem;
-      &:hover {
-        color: $green;
-      }
     }
   }
   &-empty {
@@ -59,7 +50,7 @@
 
 @include tablet {
   .pet-wrapper {
-    height: 850px;
+    height: auto;
     margin-top: 30px;
   }
 }
