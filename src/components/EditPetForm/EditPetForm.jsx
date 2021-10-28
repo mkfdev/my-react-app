@@ -85,10 +85,10 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                 })}
               />
               {errors.name && errors.name.type === "required" && (
-                <p>name 입력해주세요.</p>
+                <p className="error">name 입력해주세요.</p>
               )}
               {errors.name && errors.name.type === "maxLength" && (
-                <p>최대 10자까지만 입력 가능합니다.</p>
+                <p className="error">최대 10자까지만 입력 가능합니다.</p>
               )}
             </li>
             <li>
@@ -106,10 +106,10 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                 })}
               />
               {errors.breed && errors.breed.type === "required" && (
-                <p>견종을 입력해주세요.</p>
+                <p className="error">견종을 입력해주세요.</p>
               )}
               {errors.breed && errors.breed.type === "maxLength" && (
-                <p>최대 20자까지만 입력 가능합니다.</p>
+                <p className="error">최대 20자까지만 입력 가능합니다.</p>
               )}
             </li>
             <li>
@@ -130,10 +130,10 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                 />
               </span>
               {errors.weight && errors.weight.type === "required" && (
-                <p>강아지의 몸무게를 입력해주세요</p>
+                <p className="error">강아지의 몸무게를 입력해주세요</p>
               )}
               {errors.weight && errors.weight.type === "pattern" && (
-                <p>숫자 세 자리까지 입력가능합니다.</p>
+                <p className="error">숫자 세 자리까지 입력가능합니다.</p>
               )}
             </li>
             <li>
@@ -153,7 +153,7 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                 )}
                 rules={{ required: true }}
               />
-              {errors.size && <p>사이즈를 선택해주세요.</p>}
+              {errors.size && <p className="error">사이즈를 선택해주세요.</p>}
             </li>
             <li>
               <div className="inp-datepicker">
@@ -182,7 +182,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                   rules={{ required: true }}
                 />
               </div>
-              {errors.birthDate && <p>태어난 날을 선택해주세요.</p>}
+              {errors.birthDate && (
+                <p className="error">태어난 날을 선택해주세요.</p>
+              )}
             </li>
             <li>
               <div className="inp-datepicker">
@@ -208,7 +210,9 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                   rules={{ required: true }}
                 />
               </div>
-              {errors.shotDate && <p>마지막 접종 날짜를 선택해주세요.</p>}
+              {errors.shotDate && (
+                <p className="error">마지막 접종 날짜를 선택해주세요.</p>
+              )}
             </li>
             <li>
               <label className="label" htmlFor="gender">
@@ -229,7 +233,7 @@ const EditPetForm = ({ InputFile, createAndUpdatePet, onClickCancel, pet }) => {
                 )}
                 rules={{ required: true }}
               />
-              {errors.gender && <p>성별을 선택해주세요.</p>}
+              {errors.gender && <p className="error">성별을 선택해주세요.</p>}
             </li>
             <li>
               <span className="label">펫 이미지 업로드</span>

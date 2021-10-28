@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BiInfoSquare } from "react-icons/bi";
 import { VscCircleOutline } from "react-icons/vsc";
+import "./PetDataList.scss";
 
 const PetDataList = ({ selectedId, petAPI }) => {
   const [updateData, setUpdateData] = useState([]);
@@ -29,11 +30,7 @@ const PetDataList = ({ selectedId, petAPI }) => {
         <BiInfoSquare />
         정보
       </h3>
-      {loading && (
-        <div>
-          <span className="loader">loading...</span>
-        </div>
-      )}
+      {loading && <span className="loader">loading...</span>}
       {updateData.length > 0 && (
         <div>
           <p className="pet-data">

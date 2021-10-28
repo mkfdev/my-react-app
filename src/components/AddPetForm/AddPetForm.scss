@@ -1,5 +1,10 @@
 //AddPetForm, EditPetForm CSS
 .petForm {
+  .error {
+    margin-top: 0.2em;
+    color: $red;
+    font-size: 0.8rem;
+  }
   ul {
     display: flex;
     flex-direction: row;
