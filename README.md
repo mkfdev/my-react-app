@@ -1,16 +1,14 @@
 # 목차
 
-[1. version정보](1.-version-정보)
+[1. version정보](#list-1)
 
-[2. 라우터 구성](2.-라우터-구성)
+[2. 라우터 구성](#list-2)
 
-[3. 라이브러리](3.-라이브러리)
+[3. 라이브러리](#list-3)
 
-[4. API](4.-API)
+[4. API](#list-4)
 
-[5. 컴포넌트 스타일링](<5.-스타일링(SCSS)>)
-
----
+## [5. 컴포넌트 스타일링](#list-5)
 
 # 프로젝트 소개
 
@@ -18,7 +16,7 @@
   펫 정보 등록 및 조회,
   펫 사진/동영상 조회 및 검색 기능을 구현한 리액트 프로젝트
 
-### 1. version 정보
+### 1. version 정보 <a id="list-1"></a>
 
 node v.14.18.1
 
@@ -50,7 +48,7 @@ node-sass v.4.14.0
   $ nvm use [버전]
   ```
 
-### 2. 라우터 구성
+### 2. 라우터 구성 <a id="list-2"></a>
 
 $ yarn add react-router-dom
 
@@ -62,11 +60,11 @@ $ yarn add react-router-dom
 | /petInfo  | PetInfo   | 펫 프로젝트 메인 페이지 (Pet 조회,등록,수정) |
 | /search   | PetSearch | 펫 이미지 동영상 조회 (api 데이터 연동)      |
 
-### 3. 라이브러리
+### 3. 라이브러리 <a id="list-3"></a>
 
 raect-hook-form(v7), ANTD, Firebase(v9), axios, redux, react-icons, sass-loader, moment, redux, redux-thunk, redux-promise
 
-### 4. API
+### 4. API <a id="list-4"></a>
 
 REST API
 
@@ -87,7 +85,7 @@ REST API
 | ----------- | ------------------------- | ------------ |
 | post        | /[cloud_name]/imageupload | image upload |
 
-### 5. 스타일링(SCSS)
+### 5. 스타일링(SCSS) <a id="list-5"></a>
 
 #### SCSS 또는 postCSS 사용
 
