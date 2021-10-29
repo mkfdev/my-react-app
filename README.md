@@ -8,11 +8,11 @@
 
 [4. API](4.-API)
 
-[5. 컴포넌트 스타일링](<5.-컴포넌트-스타일링-(SCSS)>)
+[5. 컴포넌트 스타일링](<5.-스타일링(SCSS)>)
 
 ---
 
-### 프로젝트 소개
+# 프로젝트 소개
 
 - 사용자 로그인 / 로그아웃,
   펫 정보 등록 및 조회,
@@ -64,7 +64,7 @@ $ yarn add react-router-dom
 
 ### 3. 라이브러리
 
-raect-hook-form(v7), ANTD, Firebase(v9), axios, redux, react-icons, sass-loader, moment
+raect-hook-form(v7), ANTD, Firebase(v9), axios, redux, react-icons, sass-loader, moment, redux, redux-thunk, redux-promise
 
 ### 4. API
 
@@ -87,7 +87,7 @@ REST API
 | ----------- | ------------------------- | ------------ |
 | post        | /[cloud_name]/imageupload | image upload |
 
-### 5. 컴포넌트 스타일링 (SCSS)
+### 5. 스타일링(SCSS)
 
 #### SCSS 또는 postCSS 사용
 
