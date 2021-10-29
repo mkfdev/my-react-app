@@ -28,8 +28,6 @@ const Login = ({ authService }) => {
   const onSubmit = async data => {
     try {
       await authService.login(data.email, data.password);
-      // await signInWithEmailAndPassword(authService, data.email, data.password);
-      console.log("login!!");
     } catch (error) {
       setErrorMessage(error.message);
       setTimeout(() => {
