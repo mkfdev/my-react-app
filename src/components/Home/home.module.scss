@@ -16,9 +16,15 @@
   h2 {
     margin-bottom: 1em;
   }
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   .text {
     display: flex;
     margin-top: 0.8em;
+    word-break: break-all;
     span {
       display: inline-block;
       vertical-align: middle;

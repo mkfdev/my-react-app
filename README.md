@@ -62,7 +62,7 @@ $ yarn add react-router-dom
 
 ### 3. 라이브러리 <a id="list-3"></a>
 
-raect-hook-form(v7), ANTD, Firebase(v9), axios, redux, react-icons, sass-loader, moment, redux, redux-thunk, redux-promise
+raect-hook-form(v7), ANTD, Firebase(v9), axios, react-icons, sass-loader, moment, redux, redux-thunk, redux-promise
 
 ### 4. API <a id="list-4"></a>
 
