@@ -1,0 +1,60 @@
+.main {
+  padding: 3em 1.5em;
+  background-color: #f0f8ff;
+  h1,
+  h2 {
+    text-align: center;
+  }
+  h1:after {
+    content: "";
+    display: block;
+    margin: 0.3em auto 0.6em;
+    width: 100px;
+    height: 1px;
+    background-color: #000;
+  }
+  h2 {
+    margin-bottom: 1em;
+  }
+  .text {
+    display: flex;
+    margin-top: 0.8em;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 0.8rem;
+    }
+    .icon {
+      flex-shrink: 0;
+      margin-right: 0.3em;
+      vertical-align: middle;
+    }
+  }
+  .link:hover {
+    color: #40c057;
+  }
+  .project {
+    margin-top: 1.5em;
+    text-align: center;
+    strong {
+      display: block;
+      font-size: 1.2em;
+    }
+    .icon {
+      margin-left: 0.3em;
+      vertical-align: middle;
+    }
+    .button {
+      margin-top: 0.5em;
+      padding: 0.4em 4em;
+      color: #fff;
+      border-radius: 4em;
+      // background-color: $green;
+      background-color: #000;
+      transition: all 0.2s ease-in;
+      &:hover {
+        background-color: #e6000078;
+      }
+    }
+  }
+}
