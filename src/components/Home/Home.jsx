@@ -32,7 +32,20 @@ const Home = () => {
       </p>
       <p className={styles.text}>
         <VscEditorLayout className={styles.icon} size="18" />
-        <span>Oven(프로토타입) URL: </span>
+        <span>
+          Oven(프로토타입) URL:
+          <button
+            onClick={() =>
+              window.open(
+                "https://ovenapp.io/view/lB6n618z9n7ztxMYm5VNXJNXwewXjI1Q/qlsZU",
+                "_blank",
+              )
+            }
+            className={styles.link}
+          >
+            https://ovenapp.io/view/lB6n618z9n7ztxMYm5VNXJNXwewXjI1Q/qlsZU
+          </button>
+        </span>
       </p>
       <p className={styles.text}>
         <FaGithub className={styles.icon} size="18" />
