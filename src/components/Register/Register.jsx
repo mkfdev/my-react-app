@@ -130,7 +130,7 @@ const Register = ({ authService }) => {
           </form>
         </section>
         <section className="auth-image">
-          <img src="/assets/pet.jpg" alt="" />
+          <img src="/images/login_pet.jpg" alt="" />
         </section>
       </div>
     </div>

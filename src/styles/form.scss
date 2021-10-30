@@ -66,6 +66,12 @@
   }
 }
 
+@media screen and (max-width: $tablet) {
+  .auth {
+    width: 100%;
+  }
+}
+
 @include mobile-sm {
   .auth {
     padding: 1.5em;

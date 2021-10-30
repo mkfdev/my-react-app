@@ -4,7 +4,7 @@ import "./PetList.scss";
 import { FaRegBell, FaGratipay } from "react-icons/fa";
 
 const PetList = ({ pet }) => {
-  const DEFAULT = "/assets/pet.jpg";
+  const DEFAULT = "/images/pet.jpg";
   const { name, breed, gender, size, weight, birthDate, shotDate, imgURL } =
     pet;
   const img_url = imgURL || DEFAULT;

@@ -58,7 +58,7 @@ const Login = ({ authService }) => {
   return (
     <div className="auth">
       <h1>
-        <img className="logo" src="assets/logo.jpg" alt="" />
+        <img className="logo" src="/images/logo.jpg" alt="" />
         <span className="text-round">우</span>
         <span className="text-round">리</span>
         <span className="text-round">같</span>
@@ -106,7 +106,7 @@ const Login = ({ authService }) => {
           </form>
         </section>
         <section className="auth-image">
-          <img src="/assets/pet.jpg" alt="" />
+          <img src="/images/login_pet.jpg" alt="" />
         </section>
       </div>
     </div>

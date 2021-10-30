@@ -11,7 +11,7 @@ const PetHeader = memo(({ logout, handleHomeMenu }) => {
   return (
     <header className="pet-header">
       <h1>
-        <img className="logo" src="assets/logo.jpg" alt="" />
+        <img className="logo" src="/images/logo.jpg" alt="" />
         <span className="text-round">우</span>
         <span className="text-round">리</span>
         <span className="text-round">같</span>
