@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PetAPI from "../../service/pet_api";
-import PetDataList from "../PetDataList/PetDataList";
 import PetHeader from "../PetHeader/PetHeader";
+import { BiInfoSquare } from "react-icons/bi";
+import { VscCircleOutline } from "react-icons/vsc";
 import "./PetSearch.scss";
 
 const petAPI = new PetAPI();
@@ -96,12 +97,30 @@ const PetSearch = ({ authService }) => {
               <span className="loader">loading...</span>
             </div>
           )}
-          {/* 선택된 pet에 대한 정보 - 한번만 출력하기 */}
-
           {!loading && (
             <div className="pet-search-list">
+              {/* 선택된 pet에 대한 정보 - [0]번째, 한번만 출력하기 */}
               {selectedId && (
-                <PetDataList selectedId={selectedId} petAPI={petAPI} />
+                <div className="pet-search-info">
+                  <h3>
+                    <BiInfoSquare />
+                    정보
+                  </h3>
+                  <div>
+                    <p className="pet-data">
+                      <VscCircleOutline />
+                      성격: {petData[0].temperament}
+                    </p>
+                    <p className="pet-data">
+                      <VscCircleOutline />
+                      몸무게: {petData[0].weight}kg
+                    </p>
+                    <p className="pet-data">
+                      <VscCircleOutline />
+                      수명: {petData[0].lifeSpan}
+                    </p>
+                  </div>
+                </div>
               )}
               <ul>
                 {petData &&
